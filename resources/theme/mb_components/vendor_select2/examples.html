@@ -1,0 +1,69 @@
+
+<!--
+    Vendor Select2 Component Examples
+    ==================================
+-->
+
+
+
+<!-- Title & Description -->
+<div class="sg-component__description">
+    IMPORTANT: This component has an unsual setup as its using vendor files, we need to plan how these should be setup before using this component.<br>
+    <br>
+    Styling a Select2 control
+</div>
+
+
+
+<!-- Example START -->
+
+    <div class="sg-component__sub-title">
+        <span>Select2</span>
+    </div>
+
+    <div style="width: 100%;">
+        <select class="test" name="test">
+            <option value="1">Monkey</option>
+            <option value="2">Chicken</option>
+            <option value="3">Cheds</option>
+        </select>
+
+        <br>
+        <br>
+        <br>
+
+        <select class="test" multiple="multiple" name="test">
+            <option value="1">Monkey</option>
+            <option value="2">Chicken</option>
+            <option value="3">Cheds</option>
+        </select>
+    </div>
+
+<!-- Example END -->
+
+
+
+<!--
+    IMPORTANT: 
+    The code below here is not required for this component to run, it only 
+    creates working examples of the component.
+-->
+
+
+
+<!-- Style guide glue CSS START -->
+
+<!-- Style guide glue CSS END -->
+
+
+
+<!-- Style guide glue JS START-->
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // Note that if you don't pass width: 100% in, select2 sets a fixed width
+        $(".test").select2({ width: '100%' });
+
+    });
+</script>
+<!-- Style guide glue JS END -->

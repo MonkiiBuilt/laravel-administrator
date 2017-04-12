@@ -1,0 +1,51 @@
+.select2-selection--single {
+  height: auto;
+  background-color: white;
+  padding: $mb-forms__inputs-padding;
+  border: $mb-forms__inputs-border;
+  border-radius: $mb-global__border-radius;
+
+  .select2-selection__rendered {
+    color: #444;
+    line-height: normal;
+    padding-left: 0;
+  }
+
+  .select2-selection__clear {
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+  }
+
+  .select2-selection__placeholder {
+    color: #999;
+  }
+
+  .select2-selection__arrow {
+    position: absolute;
+
+    top   : 0.1rem;
+    bottom: 0.1rem;
+    right : 0.1rem;
+
+    width : 3rem;
+    height: auto;
+
+    b {
+      border-color: #888 transparent transparent transparent;
+      border-style: solid;
+      border-width: 5px 4px 0 4px;
+
+      height: 0;
+      left: 50%;
+
+      margin-left: -4px;
+      margin-top: -2px;
+
+      position: absolute;
+
+      top: 50%;
+      width: 0;
+    }
+  }
+}

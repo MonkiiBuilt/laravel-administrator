@@ -1,0 +1,88 @@
+
+/**
+ *
+ * Styleguide - Layout
+ *
+ * Container, header/sidebar, main
+ *
+ */
+
+.sg-page-container {
+
+}
+
+.sg-header {
+	position: relative;
+	line-height: 1.1;
+
+	@include mq($until: $sg-layout-bp-change) {
+		padding: $sg-header-padding-s map-get($sg-content-padding, 's');
+	}
+
+	@include mq($from: $sg-layout-bp-change) {
+		width: $sg-sidebar-width;
+		position: fixed;
+		top:    0;
+		bottom: 0;
+		overflow: auto;
+	}
+}
+
+.sg-logo {
+	color: $sg-color__text-main;
+	font-size: 24px;
+	font-weight: 700;
+
+	@include mq($from: $sg-layout-bp-change) {
+		padding: 50px map-get($sg-sidebar-padding, 'm');
+		font-size: 33px;
+	}
+
+	@include mq($from: $breakpoint-m) {
+		padding-top: 50px;
+	}
+
+	@include mq($from: $breakpoint-l) {
+		padding-top: 70px;
+	}
+
+	.subtitle {
+		font-size: 18px;
+		font-weight: normal;
+	}
+}
+
+.sg-main {
+	min-height: 100vh;
+	background-color: $sg-color__content-bg;
+	padding: map-get($sg-content-padding, 's') 0;
+
+	@include mq($until: $sg-layout-bp-change) {
+		box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+	}
+
+	@include mq($from: $sg-layout-bp-change) {
+		width: calc(100% - #{$sg-sidebar-width});
+		margin-left: $sg-sidebar-width;
+	}
+
+	@include mq($from: $breakpoint-m) {
+		padding: map-get($sg-content-padding, 'm') 0;
+	}
+
+	@include mq($from: $breakpoint-l) {
+		padding: map-get($sg-content-padding, 'l') 0;
+	}
+}
+
+.sg-component {
+	padding: 0 map-get($sg-content-padding, 's');
+
+	@include mq($from: $breakpoint-m) {
+		padding: 0 map-get($sg-content-padding, 'm');
+	}
+
+	@include mq($from: $breakpoint-l) {
+		padding: 0 map-get($sg-content-padding, 'l');
+	}
+}

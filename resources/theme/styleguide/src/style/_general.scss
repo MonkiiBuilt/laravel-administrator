@@ -1,0 +1,115 @@
+
+/**
+ *
+ * Styleguide - General
+ *
+ * Covers HTML, body, and text
+ *
+ */
+
+html {
+	height: 100%;
+	box-sizing: border-box;
+	text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+body.sg-body {
+	padding: 0;
+	margin: 0;
+	background: $sg-color__bg;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+
+	.btn {
+		margin: 1rem .2rem;
+	}
+}
+
+
+.sg-component__sub-title {
+	position: relative;
+	margin-top: 60px;
+	margin-bottom: 45px;
+	margin-left: -#{map-get($sg-content-padding, 's')};
+	margin-right: -#{map-get($sg-content-padding, 's')};
+	font-size: 18px;
+	font-family: monospace;
+	letter-spacing: 2px;
+	color: $sg-color__text-main;
+
+	@include mq($from: $breakpoint-m) {
+		margin-top: 80px;
+		margin-bottom: 55px;
+		margin-left: -#{map-get($sg-content-padding, 'm')};
+		margin-right: -#{map-get($sg-content-padding, 'm')};
+	}
+
+	@include mq($from: $breakpoint-l) {
+		margin-top: 100px;
+		margin-left: -#{map-get($sg-content-padding, 'l')};
+		margin-right: -#{map-get($sg-content-padding, 'l')};
+	}
+
+	&:nth-of-type(1) {
+		margin-top: 0;
+	}
+
+	&:before {
+		position: absolute;
+		top: 50%;
+		content: "";
+		height: 3px;
+		width: 100%;
+		background-color: #f1f1f1;
+		transform: translateY(-50%);
+	}
+
+	// Text
+	span {
+		$span-padding: 16px;
+
+		position: relative;
+		padding: 0 $span-padding;
+		z-index: 1;
+		background-color: $sg-color__content-bg;
+		text-transform: uppercase;
+		margin-left: map-get($sg-content-padding, 's');
+
+		@include mq($from: $breakpoint-m) {
+			margin-left: calc(#{map-get($sg-content-padding, 'm')} - #{$span-padding});
+		}
+
+		@include mq($from: $breakpoint-l) {
+			margin-left: calc(#{map-get($sg-content-padding, 'l')} - #{$span-padding});
+		}
+	}
+}
+
+.sg-component__description {
+	color: $sg-color__text-main;
+	font-style: italic;
+	line-height: 1.4;
+	font-size: 16px;
+
+	code {
+		display: inline-block;
+		padding: 0 6px;
+		border-radius: 3px;
+		background-color: darken($sg-color__bg, 5%);
+		font-style: normal;
+		font-size: 14px;
+	}
+}
+
+.sg-component__container {
+	max-width: 1000px;
+	margin: 0 auto;
+}

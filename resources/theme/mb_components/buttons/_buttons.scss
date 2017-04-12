@@ -1,0 +1,318 @@
+
+/**
+ *
+ * BUTTONS
+ *
+ * These classes can be applied to <a>, <button>, and <input type="submit">
+ *
+ * Tested to work on (windows/mac):
+ *	Chrome xx.xx+
+ *	Safari xx.xx+
+ *	Firefox xx.xx+
+ *	IE xx.xx+
+ *	Android xx.xx+
+ *	iOS xx.xx+
+ */
+
+
+
+//// VARIABLES
+//// -------------------------------------------
+// Variables which are just straight mappings should not be overrideable here
+// (i.e., no !default on the end). Variables which reference $mb-global-* or
+// are modifying other variables (e.g., mix(...)) should have !default on the
+// end so they can be individually overridden if need be
+
+// Defaults
+$_mb-buttons__default-color                  : $mb-buttons__default-color;
+$_mb-buttons__default-color--hover           : $mb-buttons__default-color--hover;
+$_mb-buttons__default-color--disabled        : $mb-buttons__default-color--disabled;
+$_mb-buttons__default-color--active          : $mb-buttons__default-color--active;
+$_mb-buttons__default-bg-color               : $mb-buttons__default-bg-color;
+$_mb-buttons__default-bg-color--hover        : $mb-buttons__default-bg-color--hover;
+$_mb-buttons__default-bg-color--disabled     : $mb-buttons__default-bg-color--disabled;
+$_mb-buttons__default-bg-color--active       : $mb-buttons__default-bg-color--active;
+$_mb-buttons__default-border-color           : $mb-buttons__default-border-color;
+$_mb-buttons__default-border-color--hover    : $mb-buttons__default-border-color--hover;
+$_mb-buttons__default-border-color--disabled : $mb-buttons__default-border-color--disabled;
+$_mb-buttons__default-border-color--active   : $mb-buttons__default-border-color--active;
+
+// Box model
+$_mb-buttons__margin       : $mb-buttons__margin;
+$_mb-buttons__padding      : $mb-buttons__padding;
+$_mb-buttons__border-width : $mb-buttons__border-width;
+$_mb-buttons__border-radius: $mb-buttons__border-radius;
+
+// Text
+$_mb-buttons__font-family: $mb-buttons__font-family;
+$_mb-buttons__font-size  : $mb-global__default-font-size !default;
+$_mb-buttons__font-weight: $mb-buttons__font-weight;
+$_mb-buttons__line-height: $mb-global__default-line-height !default;
+
+// Other
+$_mb-buttons__transition : $mb-buttons__transition;
+
+//// Primary button ////
+$_mb-buttons__primary-color          	     : $mb-buttons__primary-color;
+$_mb-buttons__primary-color--hover   	     : $mb-buttons__primary-color--hover;
+$_mb-buttons__primary-color--disabled	     : $mb-buttons__primary-color--disabled;
+$_mb-buttons__primary-color--active	         : $mb-buttons__primary-color--active;
+$_mb-buttons__primary-bg-color       	     : $mb-buttons__primary-bg-color;
+$_mb-buttons__primary-bg-color--hover	     : $mb-buttons__primary-bg-color--hover;
+$_mb-buttons__primary-bg-color--disabled     : $mb-buttons__primary-bg-color--disabled;
+$_mb-buttons__primary-bg-color--active       : $mb-buttons__primary-bg-color--active;
+$_mb-buttons__primary-border-color           : $mb-buttons__primary-border-color;
+$_mb-buttons__primary-border-color--hover    : $mb-buttons__primary-border-color--hover;
+$_mb-buttons__primary-border-color--disabled : $mb-buttons__primary-border-color--disabled;
+$_mb-buttons__primary-border-color--active   : $mb-buttons__primary-border-color--active;
+
+//// Secondary button ////
+$_mb-buttons__secondary-color                  : $mb-buttons__secondary-color;
+$_mb-buttons__secondary-color--hover           : $mb-buttons__secondary-color--hover;
+$_mb-buttons__secondary-color--disabled        : $mb-buttons__secondary-color--disabled;
+$_mb-buttons__secondary-color--active          : $mb-buttons__secondary-color--active;
+$_mb-buttons__secondary-bg-color               : $mb-buttons__secondary-bg-color;
+$_mb-buttons__secondary-bg-color--hover        : $mb-buttons__secondary-bg-color--hover;
+$_mb-buttons__secondary-bg-color--disabled     : $mb-buttons__secondary-bg-color--disabled;
+$_mb-buttons__secondary-bg-color--active       : $mb-buttons__secondary-bg-color--active;
+$_mb-buttons__secondary-border-color           : $mb-buttons__secondary-border-color;
+$_mb-buttons__secondary-border-color--hover    : $mb-buttons__secondary-border-color--hover;
+$_mb-buttons__secondary-border-color--disabled : $mb-buttons__secondary-border-color--disabled;
+$_mb-buttons__secondary-border-color--active   : $mb-buttons__secondary-border-color--active;
+
+//// Tertiary button ////
+$_mb-buttons__tertiary-color                  : $mb-buttons__tertiary-color;
+$_mb-buttons__tertiary-color--hover           : $mb-buttons__tertiary-color--hover;
+$_mb-buttons__tertiary-color--disabled        : $mb-buttons__tertiary-color--disabled;
+$_mb-buttons__tertiary-color--active          : $mb-buttons__tertiary-color--active;
+$_mb-buttons__tertiary-bg-color               : $mb-buttons__tertiary-bg-color;
+$_mb-buttons__tertiary-bg-color--hover	      : $mb-buttons__tertiary-bg-color--hover;
+$_mb-buttons__tertiary-bg-color--disabled     : $mb-buttons__tertiary-bg-color--disabled;
+$_mb-buttons__tertiary-bg-color--active       : $mb-buttons__tertiary-bg-color--active;
+$_mb-buttons__tertiary-border-color           : $mb-buttons__tertiary-border-color;
+$_mb-buttons__tertiary-border-color--hover    : $mb-buttons__tertiary-border-color--hover;
+$_mb-buttons__tertiary-border-color--disabled : $mb-buttons__tertiary-border-color--disabled;
+$_mb-buttons__tertiary-border-color--active   : $mb-buttons__tertiary-border-color--active;
+
+//// Larger button ////
+$_mb-buttons--large-padding  : $mb-buttons--large-padding;
+$_mb-buttons--large-font-size: $mb-buttons--large-font-size;
+
+//// Smaller button ////
+$_mb-buttons--small-padding  : $mb-buttons--small-padding;
+$_mb-buttons--small-font-size: $mb-buttons--small-font-size;
+
+//// Pill button ////
+$_mb-buttons--pill-border-width: $mb-buttons--pill-border-width;
+
+
+
+//// DEFINITIONS
+//// Add/remove as needed per project
+//// -------------------------------------------
+
+@include static-modifiers(btn, (primary secondary tertiary pill outline small large));
+.btn {
+    .icon { @extend %btn__icon !optional; }
+}
+
+
+
+//// SILENT CLASSES
+//// -------------------------------------------
+// 1. This gives us more flexibility with icons etc., but could also be
+//    inline-block if needed
+// 2. Remove default appearance, particularly on mobile OS' such as iOS
+// 3. For white text on dark backgrounds (buttons & input submits)
+// 4. Centre text/icon within button - eg. if setting width
+
+%btn {
+    // Positioning
+
+    // Display
+    display: inline-flex; // [1]
+
+    // Box model
+    margin : $_mb-buttons__margin;
+    padding: $_mb-buttons__padding;
+    border : $_mb-buttons__border-width solid $_mb-buttons__default-border-color;
+    border-radius: $_mb-buttons__border-radius;
+    vertical-align: middle;
+
+    // Colours
+    background-color: $_mb-buttons__default-bg-color;
+    color           : $_mb-buttons__default-color;
+    background-clip: padding-box;
+
+    // Typography
+    font-family: $_mb-buttons__font-family;
+    font-size  : $_mb-buttons__font-size;
+    font-weight: $_mb-buttons__font-weight;
+    line-height: $_mb-buttons__line-height;
+    text-decoration: none;
+    justify-content: center; // [4]
+
+    // Other
+    appearance: none; // [2]
+    cursor: pointer;
+    transition: $_mb-buttons__transition;
+    -webkit-font-smoothing: antialiased; // [3]
+    -moz-osx-font-smoothing: grayscale;  // [3]
+
+    &:hover,
+    &:focus:hover {
+        background-color: $_mb-buttons__default-bg-color--hover;
+        border-color    : $_mb-buttons__default-border-color--hover;
+        color           : $_mb-buttons__default-color;
+        text-decoration : none;
+    }
+
+    &:focus,
+    &:active {
+        background-color: $_mb-buttons__default-bg-color;
+        color           : $_mb-buttons__default-color;
+        text-decoration : none;
+    }
+
+    &:disabled {
+        background-color: $_mb-buttons__default-bg-color--disabled;
+        border-color    : $_mb-buttons__default-border-color--disabled;
+        color           : $_mb-buttons__default-color--disabled;
+    }
+
+    &.active {
+        background-color: $_mb-buttons__default-bg-color--active;
+        border-color    : $_mb-buttons__default-border-color--active;
+        color           : $_mb-buttons__default-color--active;
+    }
+}
+
+%btn--primary {
+    background-color: $_mb-buttons__primary-bg-color;
+    border-color    : $_mb-buttons__primary-border-color;
+    @include if-changed('color', $_mb-buttons__default-color, $_mb-buttons__primary-color);
+
+    &:hover {
+        background-color: $_mb-buttons__primary-bg-color--hover;
+        border-color    : $_mb-buttons__primary-border-color--hover;
+        @include if-changed('color', $_mb-buttons__default-color--hover, $_mb-buttons__primary-color--hover);
+    }
+
+    &:disabled {
+        background-color: $_mb-buttons__primary-bg-color--disabled;
+        border-color    : $_mb-buttons__primary-border-color--disabled;
+        color: $_mb-buttons__primary-color--disabled;
+    }
+
+    &.active {
+        background-color: $_mb-buttons__primary-bg-color--active;
+        border-color    : $_mb-buttons__primary-border-color--active;
+        color           : $_mb-buttons__primary-color--active;
+    }
+}
+
+%btn--secondary {
+    background-color: $_mb-buttons__secondary-bg-color;
+    border-color    : $_mb-buttons__secondary-border-color;
+    @include if-changed('color', $_mb-buttons__default-color, $_mb-buttons__secondary-color);
+
+    &:hover {
+        background-color: $_mb-buttons__secondary-bg-color--hover;
+        border-color    : $_mb-buttons__secondary-border-color--hover;
+        @include if-changed('color', $_mb-buttons__default-color--hover, $_mb-buttons__secondary-color--hover);
+    }
+
+    &:disabled {
+        background-color: $_mb-buttons__secondary-bg-color--disabled;
+        border-color    : $_mb-buttons__secondary-border-color--disabled;
+        color: $_mb-buttons__secondary-color--disabled;
+    }
+
+    &.active {
+        background-color: $_mb-buttons__secondary-bg-color--active;
+        border-color    : $_mb-buttons__secondary-border-color--active;
+        color           : $_mb-buttons__secondary-color--active;
+    }
+}
+
+%btn--tertiary {
+    background-color: $_mb-buttons__tertiary-bg-color;
+    border-color    : $_mb-buttons__tertiary-border-color;
+    @include if-changed('color', $_mb-buttons__default-color, $_mb-buttons__tertiary-color);
+
+    &:hover {
+        background-color: $_mb-buttons__tertiary-bg-color--hover;
+        border-color    : $_mb-buttons__tertiary-border-color--hover;
+        @include if-changed('color', $_mb-buttons__default-color--hover, $_mb-buttons__tertiary-color--hover);
+    }
+
+    &:disabled {
+        background-color: $_mb-buttons__tertiary-bg-color--disabled;
+        border-color    : $_mb-buttons__tertiary-border-color--disabled;
+        color: $_mb-buttons__tertiary-color--disabled;
+    }
+
+    &.active {
+        background-color: $_mb-buttons__tertiary-bg-color--active;
+        border-color    : $_mb-buttons__tertiary-border-color--active;
+        color           : $_mb-buttons__tertiary-color--active;
+    }
+}
+
+// 1. An arbitrarily large number, as using a % value here would make an
+//    ellipse shape, which is undesirable
+// 2. Using a large border-radius with a visible border creates really jaggy
+//    edges on linux and windows so this is set to 0 by default.
+%btn--pill {
+    border-radius: 1000rem; // [1]
+    border-width: $_mb-buttons--pill-border-width; // [2]
+}
+
+// Outline modifier should just make things outlined only; it should rely on the
+// other primary, secondary etc. modifiers for colour
+%btn--outline {
+    color: $_mb-buttons__default-bg-color;
+    background-color: transparent;
+
+    &:hover {
+        background-color: transparent;
+        color: $_mb-buttons__default-border-color--hover;
+    }
+
+    &%btn--primary   {
+        color: $_mb-buttons__primary-border-color;
+
+        &:hover {
+            color: $_mb-buttons__primary-border-color--hover;
+        }
+    }
+
+    &%btn--secondary {
+        color: $_mb-buttons__secondary-bg-color;
+
+        &:hover {
+            color: $_mb-buttons__secondary-border-color--hover;
+        }
+    }
+
+    &%btn--tertiary  {
+        color: $_mb-buttons__tertiary-border-color;
+
+        &:hover {
+            color: $_mb-buttons__tertiary-border-color--hover;
+        }
+    }
+}
+
+%btn--small {
+    padding: $_mb-buttons--small-padding;
+    font-size: $_mb-buttons--small-font-size;
+}
+
+%btn--large {
+    padding: $_mb-buttons--large-padding;
+    font-size: $_mb-buttons--large-font-size;
+}
+
+%btn__icon {
+}

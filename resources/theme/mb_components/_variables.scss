@@ -1,0 +1,333 @@
+
+/**
+ *
+ * Monkii Bars Components
+ *
+ *
+ * Monkii Bars design is minimal and flat.
+ * It is easier to add new CSS rules that to overwrite existing rules.
+ * By changing these variables you can customise Monkii Bars Components appearance to
+ * suit your project.
+ *
+ * Variables
+ * - Name concisely, with full name unless abbreviation is obvious
+ * 		e.g. ok to use -bg- for -background-
+ * - Variables in this file should follow this format:
+ * 		- $mb-component-name__[component-type]-css-property OR other
+ *      - This goes in order from generic -> specific
+ * - Variables inside a component file should be pre-fixed with $_mb-
+ *		e.g. $_mb-button__padding
+ *
+ * 0.1rem = 1px
+ * 1rem   = 10px
+ */
+
+
+
+//// GLOBAL
+//// Can be used in any component
+//// -------------------------------------------
+$mb-global__border-radius: 0.3rem !default;
+$mb-global__box-shadow   : 0.1rem 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.4) !default;
+
+// Fonts
+$mb-global__font-primary  : Helvetica, Arial, sans-serif !default;
+$mb-global__font-secondary: Georgia, "Times New Roman", serif !default;
+
+$mb-global__default-font-size: 1.5rem !default;
+$mb-global__default-line-height: 1.4 !default;
+
+
+// These can be used but should *not* be overridden as they map to standard CSS
+// font weights -- see https://developer.mozilla.org/en/docs/Web/CSS/font-weight
+$mb-global__font-weight-light   : 300;
+$mb-global__font-weight-normal  : 400;
+$mb-global__font-weight-semibold: 600;
+$mb-global__font-weight-bold    : 700;
+
+
+//// TYPOGRAPHY
+//// -------------------------------------------
+
+// Body text
+$mb-typography__default-margin: 1.3rem 0 !default;
+$mb-typography__default-color : $color__mine-shaft !default;
+
+$mb-typography__p-lead-font-size: 1.2em !default;
+
+$mb-typography__body-responsive: (
+        s: ('font-size': $mb-global__default-font-size * 1.05),
+        m: ('font-size': $mb-global__default-font-size * 1.1),
+        l: ('font-size': $mb-global__default-font-size * 1.15)
+) !default;
+
+// Headings
+$mb-typography__heading-font-family: $mb-global__font-secondary !default;
+$mb-typography__heading-font-weight: $mb-global__font-weight-bold !default;
+$mb-typography__heading-line-height: 1.2 !default;
+$mb-typography__heading-color      : $mb-typography__default-color !default;
+$mb-typography__heading-margin     : 1.3rem 0 !default;
+
+$mb-typography__h1-font-size: 3.4em !default;
+$mb-typography__h2-font-size: 2.8em !default;
+$mb-typography__h3-font-size: 2.4em !default;
+$mb-typography__h4-font-size: 2em !default;
+$mb-typography__h5-font-size: 1.6em !default;
+$mb-typography__h6-font-size: 1.2em !default;
+
+$mb-typography__link-color       : blue !default;
+$mb-typography__link-color-hover : purple !default;
+$mb-typography__link-color-active: $mb-typography__link-color-hover !default;
+$mb-typography__link-font-weight: normal !default;
+$mb-typography__link-decoration : none !default;
+$mb-typography__link-decoration--hover: underline !default;
+$mb-typography__link-transition : color ease-out 0.3s !default;
+
+$mb-typography__blockquote-margin: 1.3rem 0 1.3rem 3rem !default;
+
+// Set this to false if not needed
+$mb-typography__selection-bg-color: false !default;
+$mb-typography__selection-color   : false !default;
+
+
+
+//// BUTTONS
+//// -------------------------------------------
+
+// Defaults
+$mb-buttons__default-color                 : $mb-typography__default-color !default;
+$mb-buttons__default-color--hover          : mix(black, $mb-buttons__default-color, 20%) !default;
+$mb-buttons__default-color--disabled       : fade_out($mb-buttons__default-color, 0.2) !default;
+$mb-buttons__default-color--active         : $mb-buttons__default-color--hover !default;
+$mb-buttons__default-bg-color              : $color__silver !default;
+$mb-buttons__default-bg-color--hover       : mix(black, $mb-buttons__default-bg-color, 20%) !default;
+$mb-buttons__default-bg-color--disabled    : fade_out($mb-buttons__default-bg-color, 0.7) !default;
+$mb-buttons__default-bg-color--active      : $mb-buttons__default-bg-color--hover !default;
+$mb-buttons__default-border-color          : $mb-buttons__default-bg-color !default;
+$mb-buttons__default-border-color--hover   : $mb-buttons__default-bg-color--hover !default;
+$mb-buttons__default-border-color--disabled: fade_out($mb-buttons__default-border-color, 0.7) !default;
+$mb-buttons__default-border-color--active  : $mb-buttons__default-bg-color--active !default;
+
+// Box model
+$mb-buttons__margin : 0 !default;
+$mb-buttons__padding: 1.2rem 2.8rem !default;
+
+// Text
+$mb-buttons__font-family: $mb-global__font-primary !default;
+$mb-buttons__font-weight: $mb-global__font-weight-bold !default;
+
+// Other
+$mb-buttons__border-width : 0.1rem !default;
+$mb-buttons__border-radius: $mb-global__border-radius !default;
+$mb-buttons__transition   : all 0.2s ease-out !default;
+
+
+//// Primary button ////
+$mb-buttons__primary-color                 : white !default;
+$mb-buttons__primary-color--hover          : $mb-buttons__primary-color !default;
+$mb-buttons__primary-color--disabled       : fade_out($mb-buttons__primary-color, 0.2) !default;
+$mb-buttons__primary-color--active         : $mb-buttons__primary-color--hover !default;
+$mb-buttons__primary-bg-color              : $color__primary !default;
+$mb-buttons__primary-bg-color--hover       : mix(black, $mb-buttons__primary-bg-color, 20%) !default;
+$mb-buttons__primary-bg-color--disabled    : fade_out($mb-buttons__primary-bg-color, 0.7) !default;
+$mb-buttons__primary-bg-color--active      : $mb-buttons__primary-bg-color--hover !default;
+$mb-buttons__primary-border-color          : $mb-buttons__primary-bg-color !default;
+$mb-buttons__primary-border-color--hover   : $mb-buttons__primary-bg-color--hover !default;
+$mb-buttons__primary-border-color--disabled: fade_out($mb-buttons__primary-border-color, 0.7) !default;
+$mb-buttons__primary-border-color--active  : $mb-buttons__primary-bg-color--active !default;
+
+//// Secondary button ////
+$mb-buttons__secondary-color   			     : $mb-buttons__default-color !default;
+$mb-buttons__secondary-color--hover	         : $mb-buttons__secondary-color !default;
+$mb-buttons__secondary-color--disabled	     : fade_out($mb-buttons__secondary-color, 0.2) !default;
+$mb-buttons__secondary-color--active  	     : $mb-buttons__secondary-color--hover !default;
+$mb-buttons__secondary-bg-color		         : $color__secondary !default;
+$mb-buttons__secondary-bg-color--hover       : mix(black, $mb-buttons__secondary-bg-color, 20%) !default;
+$mb-buttons__secondary-bg-color--disabled    : fade_out($mb-buttons__secondary-bg-color, 0.7) !default;
+$mb-buttons__secondary-bg-color--active      : $mb-buttons__secondary-bg-color--hover !default;
+$mb-buttons__secondary-border-color          : $mb-buttons__secondary-bg-color !default;
+$mb-buttons__secondary-border-color--hover   : $mb-buttons__secondary-bg-color--hover !default;
+$mb-buttons__secondary-border-color--disabled: fade_out($mb-buttons__secondary-border-color, 0.7) !default;
+$mb-buttons__secondary-border-color--active  : $mb-buttons__secondary-bg-color--active !default;
+
+//// Tertiary button ////
+$mb-buttons__tertiary-color   			    : white !default;
+$mb-buttons__tertiary-color--hover    	    : $mb-buttons__tertiary-color !default;
+$mb-buttons__tertiary-color--disabled	    : fade_out($mb-buttons__tertiary-color, 0.2) !default;
+$mb-buttons__tertiary-color--active         : $mb-buttons__tertiary-color--hover !default;
+$mb-buttons__tertiary-bg-color			    : $color__mine-shaft !default;
+$mb-buttons__tertiary-bg-color--hover       : mix(black, $mb-buttons__tertiary-bg-color, 20%) !default;
+$mb-buttons__tertiary-bg-color--disabled    : fade_out($mb-buttons__tertiary-bg-color, 0.7) !default;
+$mb-buttons__tertiary-bg-color--active      : $mb-buttons__tertiary-bg-color--hover !default;
+$mb-buttons__tertiary-border-color          : $mb-buttons__tertiary-bg-color !default;
+$mb-buttons__tertiary-border-color--hover   : $mb-buttons__tertiary-bg-color--hover !default;
+$mb-buttons__tertiary-border-color--disabled: fade_out($mb-buttons__tertiary-border-color, 0.7) !default;
+$mb-buttons__tertiary-border-color--active  : $mb-buttons__tertiary-bg-color--active !default;
+
+//// Larger button ////
+$mb-buttons--large-padding  : 1.4rem 3.6rem !default;
+$mb-buttons--large-font-size: 1.8rem !default;
+
+//// Smaller button ////
+$mb-buttons--small-padding  : 0.8rem 2.2rem !default;
+$mb-buttons--small-font-size: 1.3rem !default;
+
+//// Pill button ////
+$mb-buttons--pill-border-width: 0 !default;
+
+
+
+//// LISTS
+//// -------------------------------------------
+
+$mb-lists-item-padding-bottom: 1rem !default;
+$mb-lists-ul-list-style-type--primary: disc !default;
+$mb-lists-ul-list-style-type--secondary: circle !default;
+$mb-lists-ul-list-style-type--tertiary: square !default;
+$mb-lists-ordered-separator: "." !default;
+
+
+
+//// TABLES
+//// -------------------------------------------
+
+$mb-tables__width           : 100% !default;
+$mb-tables__margin          : 0 0 1rem 0 !default;
+$mb-tables__cell-padding    : 1.2rem !default;
+$mb-tables__tbody-text-align: left !default;
+$mb-tables__border-bottom   : 0.1rem solid #e1e1e1 !default;
+
+
+//// Table Headers ////
+$mb-tables__thead-font-weight  : $mb-global__font-weight-bold !default;
+$mb-tables__thead-text-align   : $mb-tables__tbody-text-align !default;
+$mb-tables__thead-border-bottom: 0.1rem solid $mb-typography__default-color !default;
+
+//// Simple Table ////
+$mb-tables__table--simple-border-bottom: $mb-tables__thead-border-bottom !default;
+
+//// Heavy table ////
+$mb-tables__table--heavy-head-bg-color: #333 !default;
+$mb-tables__table--heavy-head-color: white !default;
+$mb-tables__table--heavy-row-bg-color: #EEE !default;
+
+
+
+//// FORMS
+//// -------------------------------------------
+
+// Placeholders
+$mb-forms__placeholder-color     : #bbb !default;
+$mb-forms__placeholder-font-style: italic !default;
+
+// Form
+$mb-forms__margin          : 0 0 1rem 0 !default;
+$mb-forms__error-color     : $color__error !default;
+$mb-forms__error-bg-color  : rgba($mb-forms__error-color, 0.03) !default;
+$mb-forms__disabled-opacity: 0.5 !default;
+$mb-forms__max-width       : none !default;
+
+// Form group
+$mb-forms__group-margin    : 1.2rem 0 !default;
+$mb-forms__group-padding   : 1rem 0 !default;
+
+// Text inputs
+$mb-forms__inputs-padding      : 1rem !default;
+$mb-forms__inputs-border       : 0.1rem solid $color__dusty-grey !default;
+$mb-forms__inputs-border-radius: 0 !default;
+$mb-forms__inputs-bg-color     : white !default;
+
+// Selects
+$mb-forms__custom-select-bg    : white !default;
+$mb-forms__custom-select-border: $mb-forms__inputs-border !default;
+$mb-forms__custom-select-arrow : $color__dusty-grey !default;
+
+// Labels
+$mb-forms__label-margin        : 0 0 0.5rem 0 !default;
+$mb-forms__label-inline-margin : $mb-forms__inputs-padding 2rem 0.5rem 0 !default;
+$mb-forms__inline-labels-widths: (
+        xs: 35%,
+        m: 30%,
+        l: 25%,
+        xxl: 20%,
+) !default;
+
+// Textarea
+$mb-forms__text-area-min-height: 12rem !default;
+
+// Radios
+$mb-forms__radio-margin: 0 0.5rem 0 0 !default;
+$mb-forms__radio-width: 2rem !default;
+
+
+
+//// SEARCH
+//// -------------------------------------------
+
+$mb-search__group--expandable-width          : 15rem !default;
+$mb-search__group--expandable-width--expanded: 30rem !default;
+
+$mb-search__btns-icon-width : 2.4rem !default;
+$mb-search__btns-icon-height: 2.4rem !default;
+
+
+//// SIDE-MENU
+//// -------------------------------------------
+$mb-menu__width: 10em;
+$mb-menu__height: 10em;
+
+
+
+//// MESSAGE
+//// -------------------------------------------
+$mb-message__color           : white !default;
+$mb-message__font-weight     : $mb-global__font-weight-normal !default;
+$mb-message__success-bg-color: $color__success !default;
+$mb-message__error-bg-color  : $color__error !default;
+$mb-message__warning-bg-color: $color__warning !default;
+$mb-message__info-bg-color   : $color__info !default;
+
+// Box model
+$mb-message__padding: $mb-forms__inputs-padding !default;   // most messages will be concerned with forms?
+$mb-message__margin : $mb-forms__group-margin !default;
+
+// Other
+$mb-message__transition: $mb-buttons__transition !default;
+
+
+/// CLOSE
+//// -------------------------------------------
+$mb-close__transition: $mb-buttons__transition !default;
+
+
+//// FIGURES
+//// -------------------------------------------
+$mb-figures__figcaption-padding: 1rem 0 !default;
+$mb-figures__figcaption-border-bottom: solid 1px #DDD !default;
+$mb-figures__figcaption-font-size: 80% !default;
+$mb-figures__figcaption-font-style: italic !default;
+$mb-figures__credit-padding: (
+        s: 0.5rem 0 0 0,
+        m: 0 0 0 2rem
+) !default;
+
+
+//// SLICK/CAROUSEL
+$mb-carousel__padding: 1rem !default;
+$mb-carousel__default-style: none !default;
+$mb-carousel__dots-align: (bottom: $mb-carousel__padding, left: $mb-carousel__padding) !default;
+$mb-carousel__dot-size: 1rem !default;
+$mb-carousel__dot-color: rgba(black, 0.2) !default;
+$mb-carousel__dot-color--active: black !default;
+$mb-carousel__arrow-color: black !default;
+$mb-carousel__arrow-bg-color: #eee !default;
+$mb-carousel__arrow-color--inactive: rgba(black, 0.5) !default;
+
+// Inset style
+$mb-carousel__overlay-color--inset: black !default;
+$mb-carousel__overlay-opacity--inset: 0.5 !default;
+$mb-carousel__dot-color--inset: rgba(white, 0.5) !default;
+$mb-carousel__dot-color--inset--active: white !default;
+$mb-carousel__arrow-color--inset: white !default;
+$mb-carousel__arrow-bg-color--inset: transparent !default;
+$mb-carousel__arrow-color--inset--inactive: rgba(white, 0.5) !default;

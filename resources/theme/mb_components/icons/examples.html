@@ -1,0 +1,92 @@
+
+<!-- 
+    Icons Component Examples
+    ==================================
+-->
+
+
+
+<!-- Title & Description -->
+<div class="sg-component__description">
+    SVG Icons that scale nicely and can be coloured using CSS.<br>
+    <br>
+    All available icons are listed below.<br>
+    <br>
+    To add more icons to the sprite sheet copy the .svg to the <code>svg\icons</code> directory and then run <code>gulp svg</code>.
+</div>
+
+
+
+<!-- Example START -->
+
+    <!-- All available icons -->
+    <div class="sg-component__sub-title">
+        <span>Available Icons</span>
+    </div>
+
+    <div class="icons-list"></div>
+
+
+    <!-- Icons inside buttons -->
+	<div class="sg-component__sub-title">
+	    <span>Icons inside buttons</span>
+	</div>
+
+    <div class="icons-inside-buttons-list"></div>
+
+<!-- Example END -->
+
+
+
+<!--
+    IMPORTANT: 
+    The code below here is not required for this component to run, it only 
+    creates working examples of the component.
+-->
+
+
+
+<!-- Style guide glue CSS START -->
+<style>
+    .icons-list .icon {
+        margin: 0 20px 20px 0;
+    }
+</style>
+<!-- Style guide glue CSS END -->
+
+
+
+<!-- Style guide glue JS START -->
+<script type="text/javascript">
+    $(document).on("icons:ready", function(e) {
+        var icons = $('.icons-svg symbol');
+
+        // Inject one of each icon on to the page
+        for(var i = 0; i < icons.length; i++) {
+            var iconName = $(icons[i]).attr('id');
+
+            var iconElement = $('<svg class="icon ' + iconName + '"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + iconName + '"></use></svg>');
+
+            $('.icons-list').append(iconElement);
+        }
+
+        // Inject 4 buttons with an icon inside each
+        var i = 0;
+        var iconName1 = $(icons[i]).attr('id');
+        var iconName2 = $(icons[(i + 1)]).attr('id');
+        var iconName3 = $(icons[(i + 2)]).attr('id');
+        var iconName4 = $(icons[(i + 3)]).attr('id');
+
+        var iconElement1 = $('<button class="btn  btn--default" type="button"><svg class="icon ' + iconName1 + '"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + iconName1 + '"></use></svg>&nbsp;Default</button>');
+
+        var iconElement2 = $('<button class="btn  btn--primary" type="button"><svg class="icon ' + iconName2 + '"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + iconName2 + '"></use></svg>&nbsp;Primary</button>');
+
+        var iconElement3 = $('<button class="btn  btn--secondary" type="button"><svg class="icon ' + iconName3 + '"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + iconName3 + '"></use></svg>&nbsp;Secondary</button>');
+
+        var iconElement4 = $('<button class="btn  btn--tertiary" type="button"><svg class="icon ' + iconName4 + '"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + iconName4 + '"></use></svg>&nbsp;Tertiary</button>');
+
+        $('.icons-inside-buttons-list').append(iconElement1, iconElement2, iconElement3, iconElement4);
+
+    });
+</script>
+<!-- Style guide glue JS END -->
