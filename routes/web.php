@@ -6,6 +6,13 @@
  * @copyright 2008 - present, Monkii Digital Agency (http://monkii.com.au)
  */
 
-Route::get('/debug', function($request) {
-    return response('hello world');
+
+Route::group(['prefix' => 'admin', 'namespace' => 'MonkiiBuilt\LaravelAdministrator'], function () {
+
+    Route::get('/', function(Request $request) {
+
+        return response('hello world');
+
+    });
+
 });
