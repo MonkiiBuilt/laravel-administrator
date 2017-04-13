@@ -16,6 +16,16 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+
+        $this->loadViewsFrom(__DIR__.'/../resources/views/', 'laravel-administrator');
+
+        $this->publishes([
+            __DIR__.'/../resources/theme/' => public_path('vendor/laravel-administrator/')
+        ], 'administrator-theme');
+
+        $this->publishes([
+            __DIR__.'/../resources/views/' => resource_path('views/laravel-administrator')
+        ], 'administrator-views');
     }
 
 }

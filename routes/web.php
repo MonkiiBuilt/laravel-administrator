@@ -11,7 +11,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'MonkiiBuilt\LaravelAdministra
 
     Route::get('/', function(Request $request) {
 
-        return response('hello world');
+        return view('laravel-administrator::laravel-administrator.index');
 
     });
 
