@@ -14,4 +14,5 @@
 
 @section('content')
     <h1>Hi there</h1>
+    {{ print_r(config('laravel-administrator-menu', 1)) }}
 @endsection

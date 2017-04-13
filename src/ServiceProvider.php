@@ -26,6 +26,10 @@ class ServiceProvider extends BaseServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views/' => resource_path('views/laravel-administrator')
         ], 'administrator-views');
+
+        $this->publishes([
+            __DIR__. '/../config/laravel-administrator.php' => config_path('/laravel-administrator.php')
+        ], 'administrator-config');
     }
 
 }
