@@ -7,13 +7,8 @@
  */
 
 
-Route::group(['prefix' => 'admin', 'namespace' => 'MonkiiBuilt\LaravelAdministrator', 'as' => 'laravel-administrator'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'MonkiiBuilt\LaravelAdministrator'], function () {
 
-    Route::get('/', function(Request $request) {
-
-        $menu = config();
-        return view('laravel-administrator::laravel-administrator.index', ['menu' => $menu]);
-
-    });
+    Route::get('/', ['uses' => 'Controllers\DashboardController@index', 'as' => 'laravel-administrator-dashboard']);
 
 });

@@ -48,10 +48,9 @@
     </header>
 
     <!-- Nav -->
-    <nav class="nav  dashboard">
-        <div class="wrapper">
-        </div>
-    </nav>
+    @foreach($menus as $name => $menu)
+        @include('laravel-administrator/menus/' . $name)
+    @endforeach
 
 
     <div class="wrapper">
