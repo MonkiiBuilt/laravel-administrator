@@ -48,7 +48,7 @@
     </header>
 
     <!-- Nav -->
-    @foreach($menus as $name => $menu)
+    @foreach($laravelAdministratorMenus as $name => $menu)
         @include('laravel-administrator/menus/' . $name)
     @endforeach
 

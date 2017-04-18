@@ -4,6 +4,8 @@
   "require": {
     "php": ">=5.5.9",
     "laravel/framework": "5.4.*",
+    "laravelcollective/html": "5.2.*",
+    "laravelcollective/bus": "^5.2"
   },
   "autoload": {
     "psr-0" : {
