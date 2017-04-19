@@ -32,10 +32,6 @@ class ServiceProvider extends BaseServiceProvider
             __DIR__. '/../config/laravel-administrator.php' => config_path('/laravel-administrator.php')
         ], 'administrator-config');
 
-        $kernel->pushMiddleware(
-           \MonkiiBuilt\LaravelAdministrator\Middleware\LaravelAdministratorMenus::class
-        );
-
         app('router')->aliasMiddleware('laravel-administrator-menus', \MonkiiBuilt\LaravelAdministrator\Middleware\LaravelAdministratorMenus::class);
     }
 
