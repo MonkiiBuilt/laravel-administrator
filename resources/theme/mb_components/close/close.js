@@ -22,7 +22,7 @@
 					self.addClass('closable--closed');
 				});
 			}
-		});
-	};
+    })
+    };
 
 })(jQuery);

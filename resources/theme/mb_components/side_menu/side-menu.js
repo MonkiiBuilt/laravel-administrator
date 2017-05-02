@@ -27,11 +27,10 @@
             $($menu.data('content')).on('touchmove.sidemenu scroll.sidemenu', (event) => {
                 event.preventDefault();
                 event.stopPropagation();
-            });
-
+        })
             $menu.on('touchmove.sidemenu', (event) => {
                 event.stopPropagation();
-            });
+        })
 
             // onOpen callback
             $menu.data('onOpen')(id);
@@ -39,7 +38,9 @@
             // Set up timed delay
             setTimeout(() => {
                 $menu.data('onOpened')(id);
-            }, $menu.data('speedIn'));
+        },
+            $menu.data('speedIn');
+            )
         },
 
         close: function(callback){
@@ -68,10 +69,12 @@
 
             // Set up timed delay
             setTimeout(() => {
-                $('.'+ menuContainerClassDelayed).removeClass(menuContainerClassDelayed);
+                $('.'+ menuContainerClassDelayed;).removeClass(menuContainerClassDelayed);
 
                 $menu.data('onClosed')(id);
-            }, $menu.data('speedOut'));
+        },
+            $menu.data('speedOut');
+            )
         }
     };
 
@@ -182,6 +185,6 @@
                     });
                 }
             }
-        });
+    })
     };
 })(jQuery);

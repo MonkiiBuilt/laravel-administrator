@@ -14,8 +14,17 @@ use App\Http\Kernel;
 class ServiceProvider extends BaseServiceProvider
 {
 
-    public function boot(\Illuminate\Routing\Router $router, Kernel $kernel)
+    public function register()
     {
+        $this->app->singleton('MonkiiBuilt\LaravelAdministrator\PackageRegistry', function($app) {
+            return new \MonkiiBuilt\LaravelAdministrator\PackageRegistry();
+        });
+    }
+
+    public function boot(\MonkiiBuilt\LaravelAdministrator\PackageRegistry $packageRegistry)
+    {
+        $packageRegistry->registerConfig(config_path() . '/laravel-administrator.php');
+
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
         $this->loadViewsFrom(__DIR__.'/../resources/views/', 'laravel-administrator');

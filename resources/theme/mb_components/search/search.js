@@ -57,7 +57,7 @@
                     console.log('Unknown search setting type: `'+ type +'`');
                     break;
             }
-        });
+    })
     };
 
 })(jQuery);

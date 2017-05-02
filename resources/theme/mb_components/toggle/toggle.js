@@ -27,7 +27,7 @@
             $('.toggle__switch', self).off().on('click', function() {
                 self.toggleClass('toggle--off');
             });
-        });
+    })
     };
 
 })(jQuery);
