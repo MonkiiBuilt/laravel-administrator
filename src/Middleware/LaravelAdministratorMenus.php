@@ -30,7 +30,7 @@ class LaravelAdministratorMenus {
 
         foreach ($menus as $key => $menu) {
             foreach ($menu as $routeName => $item) {
-                if ($route == $routeName) {
+                if ($route == $routeName || (isset($item['children']) && in_array($route, $item['children']))) {
                     $menus[$key][$routeName]['classes'][] = 'active';
                 }
 
