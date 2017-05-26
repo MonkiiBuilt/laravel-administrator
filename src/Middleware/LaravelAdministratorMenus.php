@@ -19,13 +19,28 @@ class LaravelAdministratorMenus {
         $this->packageRegistry = $packageRegistry;
     }
 
-    public function handle($request, Closure $next)
+    public function handle(\Illuminate\Http\Request $request, Closure $next)
     {
 
         $config = $this->packageRegistry->getConfigs();
 
+        $route = $request->route()->getName();
 
         $menus = $config['menu'];
+
+        foreach ($menus as $key => $menu) {
+            foreach ($menu as $routeName => $item) {
+                if ($route == $routeName) {
+                    $menus[$key][$routeName]['classes'][] = 'active';
+                }
+
+                if (!empty($menus[$key][$routeName]['classes'])) {
+                    $menus[$key][$routeName]['class'] = implode(' ', $menus[$key][$routeName]['classes']);
+                } else {
+                    $menus[$key][$routeName]['class'] = '';
+                }
+            }
+        }
 
         \View::share('laravelAdministratorMenus', $menus);
 

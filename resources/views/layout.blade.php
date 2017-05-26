@@ -23,7 +23,7 @@
     <link href="{{ asset('favicon.ico', env('FORCE_HTTPS', false)) }}" rel="icon" type="image/x-icon" >
 
 </head>
-<body class="dashboard">
+<body>
 <div class="inner-body">
 
     <!-- Header -->
@@ -36,11 +36,11 @@
             </div>
 
             @if ($user)
-            <div class="user">
-                <span>Welcome {{ $user->first_name }}!</span>
-                <a href="">Edit your account</a>
-                <a href="{{ url('/logout') }}">Logout</a>
-            </div>
+                <div class="user">
+                    <span>Welcome {{ $user->first_name }}!</span>
+                    <a href="">Edit your account</a>
+                    <a href="{{ url('/logout') }}">Logout</a>
+                </div>
             @endif
 
         </div>
@@ -48,10 +48,7 @@
     </header>
 
     <!-- Nav -->
-    @foreach($laravelAdministratorMenus as $name => $menu)
-        @include('laravel-administrator/menus/' . $name)
-    @endforeach
-
+    @each('laravel-administrator.menus.menu', $laravelAdministratorMenus, 'menu')
 
     <div class="wrapper">
 
@@ -79,8 +76,8 @@
     <script type="text/javascript">
         //<!--
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
         ga('create', 'UA-798241-1', 'auto');
@@ -99,18 +96,88 @@
 
     @yield('scripts')
 
-    @if (\App::environment('staging'))
     <script type="text/javascript">
-        (function() {
-            var s = document.createElement("script");
-            s.type = "text/javascript";
-            s.async = true;
-            s.src = '//api.usersnap.com/load/'+
-                    'b9e3f45f-001b-43e2-ba55-a2b50128ff3a.js';
-            var x = document.getElementsByTagName('script')[0];
-            x.parentNode.insertBefore(s, x);
-        })();
+
+        $(".chosen-select").chosen({search_contains: true, disable_search_threshold: 8});
+        $(".chosen-select-plain").chosen({disable_search: true, inherit_select_classes: true});
+
+
+        // We can call this when the dataTables have been setup
+        function onTableSetup() {
+            setupConfirmModal();
+        }
+
+        // Setup confirmation modal
+        var confirmForm = 0;
+        function setupConfirmModal() {
+            $("form.confirm button[type='submit']").click(function () {
+                confirmForm = $(this).closest("form.confirm");
+
+                $.colorbox({
+                    inline: true,
+                    width: "30%",
+                    href: "#confirm_content"
+                });
+
+                return false;
+            });
+        }
+
+        // Capture confirmation modal choice
+        $(".confirm_link").click(function () {
+            var selection = $(this).text();
+
+            if (selection == "Yes") {
+                $(confirmForm).submit();
+                $.colorbox.close();
+            }
+            else { //if (selection == "No") {
+                $.colorbox.close();
+            }
+        });
+
+        $(function() {
+            // Call this immediately in case we're not using dataTables here
+            setupConfirmModal();
+
+            // Setup focus helper for Chosen dropdown plugin
+            $('body').on('focus', '.chosen-container-single input', function(e) {
+                //console.log(document.activeElement);
+                if (!$(this).closest('.chosen-container').hasClass('chosen-container-active')) {
+                    var $chosenCont = $(this).closest('.chosen-container');
+                    $($chosenCont).find("ul.chosen-results").attr("tabindex", "-1");
+                    $($chosenCont).trigger('mousedown');
+                }
+            });
+        });
+
+
+        // Setup "Show more" on help
+        $(".help__more").click(function () {
+
+            $(this).closest(".help__text").hide();
+
+            var fullHelp = $(this).closest(".help").find(".help__full");
+            $(fullHelp).hide();
+            $(fullHelp).addClass("open");
+            $(fullHelp).slideDown(200);
+
+        });
+
     </script>
+
+    @if (\App::environment('staging'))
+        <script type="text/javascript">
+            (function() {
+                var s = document.createElement("script");
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = '//api.usersnap.com/load/'+
+                    'b9e3f45f-001b-43e2-ba55-a2b50128ff3a.js';
+                var x = document.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
+            })();
+        </script>
     @endif
 
 </div><!-- END .inner-body -->

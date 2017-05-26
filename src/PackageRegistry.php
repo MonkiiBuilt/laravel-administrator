@@ -9,18 +9,34 @@
 namespace MonkiiBuilt\LaravelAdministrator;
 
 
+/**
+ * Class PackageRegistry
+ * @package MonkiiBuilt\LaravelAdministrator
+ */
 class PackageRegistry implements ComponentsRegistryInterface
 {
 
+    /**
+     * @var array
+     */
     protected $packages= [];
 
+    /**
+     * @var array
+     */
     protected $configs = [];
 
+    /**
+     * @return array
+     */
     public function getPackages()
     {
         return $this->packages;
     }
 
+    /**
+     * @return array
+     */
     public function getConfigs()
     {
         $config = [];
@@ -33,11 +49,17 @@ class PackageRegistry implements ComponentsRegistryInterface
         return $config;
     }
 
+    /**
+     * @param $namespace
+     */
     public function registerPackage($namespace)
     {
         $this->packages[] = $namespace;
     }
 
+    /**
+     * @param $config
+     */
     public function registerConfig($config)
     {
         $this->configs[] = $config;
