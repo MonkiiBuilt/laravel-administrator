@@ -10,33 +10,35 @@ namespace MonkiiBuilt\LaravelAdministrator\Middleware;
 
 use Closure;
 
-class LaravelAdministratorMenus {
-
-    protected $packageRegistry;
-
-    public function __construct(\MonkiiBuilt\LaravelAdministrator\PackageRegistry $packageRegistry)
-    {
-        $this->packageRegistry = $packageRegistry;
-    }
+class LaravelAdministratorMenus
+{
 
     public function handle(\Illuminate\Http\Request $request, Closure $next)
     {
 
-        $config = $this->packageRegistry->getConfigs();
-
         $route = $request->route()->getName();
 
-        $menus = $config['menu'];
+        $menus = config('laravel-administrator.menu');
 
         foreach ($menus as $key => $menu) {
             foreach ($menu as $routeName => $item) {
+
+                /**
+                 * If the current route matches either the route name of this menu item or is present in this
+                 * menu item's array of children then add an 'active' class to the item's classes array
+                 *
+                 */
                 if ($route == $routeName || (isset($item['children']) && in_array($route, $item['children']))) {
                     $menus[$key][$routeName]['classes'][] = 'active';
                 }
 
+                /**
+                 * Convert the item's classes array to a string and add that as a new class element to the item
+                 */
                 if (!empty($menus[$key][$routeName]['classes'])) {
                     $menus[$key][$routeName]['class'] = implode(' ', $menus[$key][$routeName]['classes']);
-                } else {
+                }
+                else {
                     $menus[$key][$routeName]['class'] = '';
                 }
             }

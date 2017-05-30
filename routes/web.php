@@ -7,8 +7,10 @@
  */
 
 
-Route::group(['prefix' => 'admin', 'namespace' => 'MonkiiBuilt\LaravelAdministrator', 'middleware' => 'laravel-administrator-menus'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'MonkiiBuilt\LaravelAdministrator', 'middleware' => ['laravel-administrator-menus', 'web', 'auth']], function () {
 
     Route::get('/', ['uses' => 'Controllers\DashboardController@index', 'as' => 'laravel-administrator-dashboard']);
+
+    Route::get('/debug', ['uses' => 'Controllers\DashboardController@debug', 'as' => 'laravel-administrator-dashboard-debug']);
 
 });
