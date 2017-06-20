@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 
-    <link href="{{ asset('vendor/laravel-administrator/build/css/main.7.css', env('FORCE_HTTPS', false)) }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/laravel-administrator/css/main.7.css', env('FORCE_HTTPS', false)) }}" rel="stylesheet" type="text/css">
 
     @yield('styles')
 
@@ -48,7 +48,7 @@
     </header>
 
     <!-- Nav -->
-    @each('laravel-administrator.menus.menu', $laravelAdministratorMenus, 'menu')
+    @each('vendor.laravel-administrator.menus.menu', $laravelAdministratorMenus, 'menu')
 
     <div class="wrapper">
 
@@ -96,8 +96,8 @@
     <script src="{{ asset('vendor/laravel-administrator/js/build/app.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
     -->
 
-    <script src="{{ asset('vendor/laravel-administrator/build/js/vendor.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
-    <script src="{{ asset('vendor/laravel-administrator/build/js/app.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
+    <script src="{{ asset('vendor/laravel-administrator/js/vendor.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
+    <script src="{{ asset('vendor/laravel-administrator/js/app.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
 
     @yield('scripts')
 

@@ -18,7 +18,7 @@ class DashboardController {
 
     public function index(Route $route)
     {
-        return view('laravel-administrator.index');
+        return view('vendor.laravel-administrator.index');
     }
 
     public function debug(Route $route)
@@ -41,6 +41,6 @@ class DashboardController {
         }
 
         return response(($content));
-        return view('laravel-administrator.index');
+        return view('vendor.laravel-administrator.index');
     }
 }

@@ -8,7 +8,7 @@
  */
 ?>
 
-@extends('laravel-administrator.layout')
+@extends('vendor.laravel-administrator.layout')
 
 @section('title', 'Dashboard')
 
