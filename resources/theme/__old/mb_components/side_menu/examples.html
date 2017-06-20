@@ -1,0 +1,101 @@
+
+<!--
+    Side Menu Component Examples
+    ==================================
+-->
+
+
+
+<!-- Title & Description -->
+<div class="sg-component__description">
+    Side menu component to create a full height side menu that slides in from the side.
+</div>
+
+
+
+<!-- Example START -->
+
+	<div class="sg-component__sub-title">
+	    <span>Side menu</span>
+	</div>
+
+	<p style="text-align: center;">
+		<a class="btn  btn--default  toggle-mobile-menu-left" href="">Open left menu</a><br>
+		<br>
+		<a class="btn  btn--default  toggle-mobile-menu-right" href="">Open right menu</a><br>
+		<br>
+		<a class="btn  btn--default  toggle-mobile-menu-top" href="">Open top menu</a><br>
+		<br>
+		<a class="btn  btn--default  toggle-mobile-menu-bottom" href="">Open bottom menu</a><br>
+		<br>
+		<a class="btn  btn--primary  menu__close" href="">Close menu</a><br>
+	</p>
+
+<!-- Example END -->
+
+
+
+<!--
+    IMPORTANT: 
+    The code below here is not required for this component to run, it only 
+    creates working examples of the component.
+-->
+
+
+
+<!-- Style guide glue CSS START -->
+
+<!-- Style guide glue CSS END -->
+
+
+
+<!-- Style guide glue JS START -->
+<script type="text/javascript">
+    $(document).ready(function() {
+
+	    // Set up the page
+	    $('.sg-page-container').wrap('<div class="test-menu-content"></div>');
+	    $('body').prepend('<div id="test-menu-left">Test menu left</div>');
+	    $('body').prepend('<div id="test-menu-right">Test menu right</div>');
+	    $('body').prepend('<div id="test-menu-top">Test menu top</div>');
+	    $('body').prepend('<div id="test-menu-bottom">Test menu bottom</div>');
+
+	    $('.toggle-mobile-menu-left').sideMenu({
+	        id       : 'test-menu-left',
+	        container: 'body',
+	        content  : '.test-menu-content',
+	        side     : 'left'
+	    });
+
+	    $('.toggle-mobile-menu-right').sideMenu({
+	        id       : 'test-menu-right',
+	        container: 'body',
+	        content  : '.test-menu-content',
+	        side     : 'right'
+	    });
+
+		$('.toggle-mobile-menu-top').sideMenu({
+			id       : 'test-menu-top',
+			container: 'body',
+			content  : '.test-menu-content',
+			side     : 'top'
+		});
+
+		$('.toggle-mobile-menu-bottom').sideMenu({
+			id       : 'test-menu-bottom',
+			container: 'body',
+			content  : '.test-menu-content',
+			side     : 'bottom'
+		});
+
+	    $('.menu__close').on('click.close', closeSideMenu);
+
+	    function closeSideMenu (event) {
+	        event.preventDefault();
+
+	        $.sideMenu('close');
+	    }
+
+    });
+</script>
+<!-- Style guide glue JS END -->

@@ -1,0 +1,82 @@
+
+/**
+ *
+ * General, site-wide variables
+ *
+ *
+ * Variables
+ * - Name concisely, with full name unless abbreviation is obvious
+ * 		e.g. ok to use -bg- for -background-
+ * - Variables in this file should follow this format:
+ * 		- $mb-component-name__[component-type]-css-property OR other
+ *      - This goes in order from generic -> specific
+ * - Variables inside a component file should be pre-fixed with $_mb-
+ *		e.g. $_mb-button__padding
+ */
+
+
+$img-path: "../../img/" !default;
+$site-width:     114rem !default;
+$side-col-width:  25rem !default;
+$main-col-width:  79.6rem !default;
+$main-col-left:    5.4rem !default;
+
+// Define how much spacing/padding you want in container gutter
+$container-gutter: (
+	xxxs: 1rem,
+	  xs: 1.5rem,
+	   m: 2rem,
+	  xl: 2.5rem,
+	xxxl: 3rem
+) !default;
+
+// z-index management
+// ALL z-index's should be defined here. Use @function get-z($layer) in _utilities.scss
+// Usage: .my-class { z-index: get-z('menu') !default; }
+// --------------------------------
+$zindex-layers: (
+	'modal'  : 1000,
+	'menu'   : 900,
+	'default': 1,
+	'below'  : -1
+) !default;
+
+// Responsive break points
+// --------------------------------------------------
+// @source: https://github.com/sass-mq/sass-mq
+// These get converted to ems whether you specify px or not, so may as well use
+// ems to keep things consistent. We have a lot of breakpoints by default, as
+// often little tweaks need to be made at certain points
+//
+// xxxs: 320px  (phone portrait)
+//  xxs: 480px  (phone landscape)
+//   xs: 560px  (larger phone landscape)
+//    s: 640px  (large phone landscape / small tablet portrait)
+//    m: 800px  (large tablet portrait)
+//    l: 960px  (large tablet landscape)
+//   xl: 1024px (desktop small)
+//  xxl: 1280px (desktop mid)
+// xxxl: 1600px (desktop large)
+$mq-breakpoints: (
+	xxxs: 20em,
+	 xxs: 30em,
+	  xs: 35em,
+	   s: 40em,
+	   m: 50em,
+	   l: 60em,
+	  xl: 64em,
+	 xxl: 80em,
+	xxxl: 100em
+) !default;
+
+// Display currently active breakpoint in browser window. Order list smallest to highest
+$mq-show-breakpoints: map-keys($mq-breakpoints) !default;
+
+
+// Focus
+$mb-global__normalize-focus: false !default;
+
+// Breakpoint/device groups
+$mb-global__mobile: xs !default;			// consider 'mobile' until xs
+$mb-global__tablet-portrait: m !default;	// consider 'tablet-portrait' from xs to m
+$mb-global__tablet-landscape: xl !default;	// consider 'tablet-landscape' from m to xl

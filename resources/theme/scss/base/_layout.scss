@@ -1,0 +1,28 @@
+//// STATIC CLASSES
+//// ---------------------------
+
+.container {
+	width: 100%;
+	max-width: $site-width;
+	margin: 0 auto;
+	
+	@include mq($from: xxxs) {
+		padding: 0 map-get($container-gutter, 'xxxs');
+	}
+		
+	@include mq($from: xs) {
+		padding: 0 map-get($container-gutter, 'xs');
+	}
+		
+	@include mq($from: m) {
+		padding: 0 map-get($container-gutter, 'm');
+	}
+		
+	@include mq($from: xl) {
+		padding: 0 map-get($container-gutter, 'xl');
+	}
+		
+	@include mq($from: xxxl) {
+		padding: 0 map-get($container-gutter, 'xxxl');
+	}
+}

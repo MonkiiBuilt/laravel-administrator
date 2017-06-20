@@ -1,0 +1,582 @@
+
+/**
+ *
+ * FORMS
+ *
+ * Individual form elements
+ *
+ * Tested to work on (windows/mac):
+ *	Chrome xx.xx+
+ *	Safari xx.xx+
+ *	Firefox xx.xx+
+ *	IE xx.xx+
+ *	Android xx.xx+
+ *	iOS xx.xx+
+ */
+
+
+
+//// VARIABLES
+//// -------------------------------------------
+// Variables which are just straight mappings should not be overrideable here
+// (i.e., no !default on the end). Variables which reference $mb-global-* or
+// are modifying other variables (e.g., mix(...)) should have !default on the
+// end so they can be individually overridden if need be
+
+// Placeholders
+$_mb-forms__placeholder-color     : $mb-forms__placeholder-color;
+$_mb-forms__placeholder-font-style: $mb-forms__placeholder-font-style;
+
+// Form
+$_mb-forms__margin          : $mb-forms__margin;
+$_mb-forms__error-color     : $mb-forms__error-color;
+$_mb-forms__error-bg-color  : $mb-forms__error-bg-color;
+$_mb-forms__disabled-opacity: $mb-forms__disabled-opacity;
+
+// Form group
+$_mb-forms__group-margin    : $mb-forms__group-margin;
+$_mb-forms__group-padding   : $mb-forms__group-padding;
+
+// Labels
+$_mb-forms__label-margin       : $mb-forms__label-margin;
+$_mb-forms__label-inline-margin: $mb-forms__label-inline-margin;
+$_mb-forms__label-color        : $mb-typography__default-color;
+
+// Text inputs
+$_mb-forms__inputs-max-width    : $mb-forms__max-width;
+$_mb-forms__inputs-padding      : $mb-forms__inputs-padding;
+$_mb-forms__inputs-bg-color     : $mb-forms__inputs-bg-color;
+$_mb-forms__inputs-border       : $mb-forms__inputs-border;
+$_mb-forms__inputs-border-radius: $mb-forms__inputs-border-radius;
+
+// Selects/dropdowns
+$_mb-forms__select-max-width    : $mb-forms__max-width;
+$_mb-forms__custom-select-bg    : $mb-forms__custom-select-bg;
+$_mb-forms__custom-select-border: $mb-forms__custom-select-border;
+$_mb-forms__custom-select-arrow : $mb-forms__custom-select-arrow;
+
+// Textarea
+$_mb-forms__text-area-min-height: $mb-forms__text-area-min-height;
+
+// Radio buttons
+$_mb-forms__radio-margin: $mb-forms__radio-margin;
+$_mb-forms__radio-width : $mb-forms__radio-width;
+
+// Form inline labels widths
+$_mb-forms__inline-labels-widths: $mb-forms__inline-labels-widths;
+
+
+//// DEFINITIONS
+//// Add/remove as needed per project
+//// -------------------------------------------
+
+.form {
+	@extend %form;
+
+	&.form--inline { @extend %form--inline !optional; }
+	&.form--inline-labels { @extend %form--inline-labels !optional; }
+}
+
+.form__group {
+	@extend %form__group;
+}
+
+// Text inputs
+textarea,
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="datetime"],
+input[type="month"],
+input[type="number"],
+input[type="time"],
+input[type="url"]
+{
+	@extend %text-inputs;
+	@extend .form__text !optional;
+}
+
+input[type="radio"] {
+	@extend %radio;
+}
+
+input[type="checkbox"] {
+	@extend %checkbox;
+}
+
+input[type="button"], button {
+	@extend .form__button;
+}
+
+input[type="submit"], button[type="submit"] {
+	@extend .form__button;
+	@extend .form__submit !optional;
+}
+
+label {
+	@extend %label;
+}
+
+select {
+	@extend %select;
+}
+
+textarea {
+	@extend %textarea;
+}
+
+.form__description {
+	// Give it a top margin same value as form label bottom margin
+	margin-top: shorthand-value(bottom, $_mb-forms__label-margin);
+
+	.form__label-check + & {
+		margin-left: $_mb-forms__radio-width + shorthand-value(right, $_mb-forms__radio-margin) + shorthand-value(left, $_mb-forms__radio-margin);
+	}
+}
+
+.form__error {
+	// If wrapped in the form group, give it a top margin (form errors might be eg. collated at the top of the form)
+	.form__group & {
+		margin-top: shorthand-value(bottom, $_mb-forms__label-margin);
+	}
+	color: $_mb-forms__error-color;
+}
+
+.select-wrap {
+	@extend %custom-select-wrap;
+
+	&::after { @extend %custom-select-arrow; }
+	select   { @extend %custom-select;       }
+}
+
+.form__label-check {
+	@extend %form__label-check;
+}
+
+.form-radio-button {
+	@extend %custom-form-radio-button;
+
+	+ .radio-button { @extend %custom-radio-button; }
+
+	&:checked + .radio-button {
+		@extend %custom-radio-button-checked;
+
+		&::after { @extend %custom-radio-button-checked-dot; }
+	}
+
+	&:disabled + .radio-button { @extend %custom-radio-button-disabled; }
+	&:focus    + .radio-button { @extend %custom-radio-button-focused;  }
+}
+
+.form-checkbox {
+	@extend %custom-form-checkbox;
+
+	+ .checkbox { @extend %custom-checkbox; }
+
+	&:checked + .checkbox {
+		@extend %custom-checkbox-checked;
+
+		&::after { @extend %custom-checkbox-checked-after; }
+	}
+
+	&:disabled + .checkbox { @extend %custom-checkbox-disabled; }
+	&:focus    + .checkbox { @extend %custom-checkbox-focused;  }
+}
+
+.form__button {
+	@extend .btn;
+}
+
+
+// Error styles
+.form__input--error {
+	border-color    : $_mb-forms__error-color;
+	background-color: $_mb-forms__error-bg-color;
+}
+
+.form__label--error {
+	color: $_mb-forms__error-color;
+}
+
+
+// Required  styles
+.form__input--required {
+
+}
+
+.form__label--required {
+
+}
+
+
+//// PLACEHOLDERS
+//// Unfortunately, placeholder text must be declared separately
+//// -------------------------------------------
+
+// Webkit
+::-webkit-input-placeholder {
+	font-style: $_mb-forms__placeholder-font-style;
+	color: $_mb-forms__placeholder-color;
+}
+
+// Firefox 4 to 18
+:-moz-placeholder {
+	font-style: $_mb-forms__placeholder-font-style;
+	color: $_mb-forms__placeholder-color;
+}
+
+// Firefox 19+
+::-moz-placeholder {
+	font-style: $_mb-forms__placeholder-font-style;
+	color: $_mb-forms__placeholder-color;
+}
+
+// IE10+
+:-ms-input-placeholder {
+	font-style: $_mb-forms__placeholder-font-style;
+	color: $_mb-forms__placeholder-color;
+}
+
+
+
+//// MIXINS
+//// -------------------------------------------
+@mixin form-required-error-classes($element) {
+
+	// Required style first
+	.required & {
+		@extend .form__#{$element}--required !optional;
+	}
+
+	// Any error styling should take priority
+	.error & {
+		@extend .form__#{$element}--error !optional;
+	}
+
+	// Error styling priority not working - surely there's a better way?
+	.required.error & {
+		@extend .form__#{$element}--required.form__#{$element}--error !optional;
+	}
+}
+
+//// SILENT CLASSES
+//// -------------------------------------------
+
+%form {
+	margin: $_mb-forms__margin;
+}
+
+%form--inline {
+}
+
+%form__group {
+	margin:  $_mb-forms__group-margin;
+	padding: $_mb-forms__group-padding;
+	border: 0;
+
+	&.disabled {
+		opacity: $_mb-forms__disabled-opacity;
+	}
+
+	.form--inline & {
+		display: inline-block;
+	}
+}
+
+%text-inputs {
+	display: block;
+	width: 100%;
+	max-width: $_mb-forms__inputs-max-width;
+	padding  : $_mb-forms__inputs-padding;
+	background-color: $_mb-forms__inputs-bg-color;
+	border   : $_mb-forms__inputs-border;
+
+	@include form-required-error-classes(input);
+}
+
+%label {
+	display: inline-block;
+	color  : $_mb-forms__label-color;
+	margin : $_mb-forms__label-margin;
+
+	&.disabled {
+		opacity: $_mb-forms__disabled-opacity;
+	}
+
+	@include form-required-error-classes(label);
+
+	.form__group-list & {
+		display: block;
+	}
+}
+
+%select {
+	max-width: $_mb-forms__select-max-width;
+	display: block;
+	width: 100%;
+
+	@include form-required-error-classes(input);
+}
+
+%textarea {
+	height: auto;
+	min-height: $_mb-forms__text-area-min-height;
+	resize: vertical;
+
+	@include form-required-error-classes(input);
+}
+
+%radio {
+	margin: $_mb-forms__radio-margin;
+
+	@include form-required-error-classes(input);
+}
+
+%checkbox {
+	margin: $_mb-forms__radio-margin;
+
+	@include form-required-error-classes(input);
+}
+
+
+// Custom select
+// -------------
+
+%custom-select-wrap {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	background-color: $_mb-forms__custom-select-bg;
+	border: $_mb-forms__custom-select-border;
+}
+
+%custom-select {
+	font-size: 1.6rem;
+	padding: $_mb-forms__inputs-padding;
+	padding-right: 4rem; // padding to ensure text doesn't run under arrow - 3rem + $_mb-forms__input-padding right value
+	width:  100%;
+	height: 100%;
+	color: black;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	background-color: transparent;
+	background-image: none;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
+	cursor: pointer;
+
+	// IE 10/11 hacks to hide native dropdown arrow
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+		&::-ms-expand {
+			display: none;
+		}
+
+		&:focus::-ms-value {
+			background: transparent;
+			color: #222;
+		}
+	}
+
+	// Firefox hack - remove focus outline
+	&:-moz-focusring {
+		color: transparent;
+		text-shadow: 0 0 0 #000;
+	}
+}
+
+%custom-select-arrow {
+	content: "";
+	display: block;
+	position: absolute;
+	top   : 0;
+	bottom: 0.1rem;
+	right : 1rem;
+	height: 0;
+	margin-top   : auto;
+	margin-bottom: auto;
+	border-top  : 0.5rem solid $_mb-forms__custom-select-arrow;
+	border-left : 0.5rem solid transparent;
+	border-right: 0.5rem solid transparent;
+	pointer-events: none;
+}
+
+
+// Custom radio
+// ------------
+
+// v1: Radio and check controls are not currently exposed as variables, due to
+//     them not being fully supported by Monkii Bars yet. This will be
+//     implemented at a later time.
+%form__label-check {
+	position: relative;
+	display: inline-block;
+	padding-left: 2.4rem;
+	vertical-align: middle;
+	line-height: 1.35;
+	color: black;
+}
+
+%custom-form-radio-button {
+	position: absolute;
+	opacity: 0;
+	width:  0;
+	height: 0;
+	z-index: 2;
+}
+
+%custom-radio-button {
+	display: block;
+	position: absolute;
+	width:  $_mb-forms__radio-width;
+	height: $_mb-forms__radio-width;
+	top:  0.3rem;
+	left: 0;
+	border: 0.1rem solid #999;
+	box-shadow: 0 0 0.3rem rgba(black, 0.2);
+	background-color: white;
+	z-index: 1;
+	border-radius: 0.9rem;
+}
+
+%custom-radio-button-checked {
+	background-color: black;
+	border: none;
+}
+
+%custom-radio-button-checked-dot {
+	content: '';
+	display: block;
+	position: absolute;
+	width:  $_mb-forms__radio-width/2;
+	height: $_mb-forms__radio-width/2;
+	top:    0;
+	bottom: 0;
+	left:   0;
+	right:  0;
+	margin: auto;
+	background-color: white;
+	border-radius: 50%;
+}
+
+%custom-radio-button-disabled {
+	background-color: #eee;
+	border-color: #ccc;
+}
+
+// 1. Outline ring for good accessibility. Don't take away outlines unless
+//    you're a terrible person.
+%custom-radio-button-focused {
+	outline: -webkit-focus-ring-color auto 5px; // [1]
+}
+
+
+// Custom checkbox
+// ---------------
+
+%custom-form-checkbox {
+	position: absolute;
+	opacity: 0;
+	width:  0;
+	height: 0;
+	z-index: 2;
+}
+
+%custom-checkbox {
+	display: block;
+	position: absolute;
+	width:  $_mb-forms__radio-width;
+	height: $_mb-forms__radio-width;
+	top:  0.3rem;
+	left: 0;
+	border: 0.1rem solid #999;
+	box-shadow: 0 0 0.3rem rgba(black, 0.2);
+	background-color: white;
+	z-index: 1;
+	border-radius: 0.3rem;
+}
+
+%custom-checkbox-checked {
+	border-color: #999;
+	background-color: #eee;
+}
+
+// 1. This would need to be encoded with a different colour source image if you
+//    need a different colour tick
+%custom-checkbox-checked-after {
+	content: '';
+	display: block;
+	position: absolute;
+	top:    0;
+	bottom: 0;
+	left:   0;
+	right:  0;
+	background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSIxMnB4IiBoZWlnaHQ9IjExcHgiIHZpZXdCb3g9IjAgMCAxMiAxMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTIgMTE7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGQ9Ik0xMS44OTMsMS4wMzdjMC4wMjItMC4wMjcsMC4wNDMtMC4wNTcsMC4wNi0wLjA4N2wwLjAyMS0wLjAzMWwtMC4wMDMtMC4wMDJjMC4wNDctMC4wOTMsMC4wOTMtMC4yMi0wLjMyOS0wLjY0MiBjLTAuNDQtMC40MzktMC43NzYtMC4yNTktMC45MS0wLjA5MmwwLDBMNC4zMjIsNy4xNTZMMS4xOTYsNS4zNzhDMS4wNTYsNS4yODUsMC43MDMsNS4yOTQsMC4yOCw1Ljc3IGMtMC4zMTIsMC4zNTMtMC4zMzcsMC43OTgtMC4yMDQsMC45NDZsMy43NTEsMy45NDhDMy45ODUsMTAuODY3LDQuMjM5LDExLDQuNTI2LDExczAuNTQtMC4xMzMsMC43LTAuMzM2aDAuMDAxbDAuMDAzLTAuMDA2IGMwLjAxOC0wLjAyMiwwLjAzMy0wLjA0NSwwLjA0OC0wLjA2OUwxMS44OTMsMS4wMzd6Ii8+DQo8L3N2Zz4=); // [1]
+	// Could also use this for one of the icons in the svg folder
+	//background-image: svg('check.svg', '[fill]: black');
+	//background-size: contain;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+
+%custom-checkbox-disabled {
+	background-color: #eee;
+	border-color: #ccc;
+}
+
+// 1. Outline ring for good accessibility. Don't take away outlines unless
+//    you're a terrible person.
+%custom-checkbox-focused {
+	outline: -webkit-focus-ring-color auto 5px; // [1]
+}
+
+
+// Form: inline labels
+%form--inline-labels {
+	.form__group {
+		position: relative;
+
+		// Only inline immediate child labels with a "for" attribute - these will be pos: abs flush left
+		> label[for] {
+			@extend .form--inline-labels__label;
+		}
+
+		// Breakpoint-specific styling - apply left padding on the group to pad over the label
+		@each $breakpoint, $width in $_mb-forms__inline-labels-widths {
+			@include mq($from: $breakpoint) {
+				padding-left: $width;
+			}
+		}
+	}
+}
+
+.form--inline-labels__label {
+
+	// Common styling to all breakpoints (that apply inline labels)
+	$first-breakpoint: nth(map-keys($_mb-forms__inline-labels-widths), 1);
+	@include mq($from: $first-breakpoint) {
+		position: absolute;
+		left: 0;				// keep top inline with whatever input we're lining up with
+		// Use padding instead of margin (since we're setting the width)
+		margin: 0;
+		padding: $_mb-forms__label-inline-margin;
+		// Position it relative to the input content box - by applying a transparent top border of the same width
+		border-top: $mb-forms__inputs-border;
+		border-color: transparent;
+		// _normalize.scss sets input line height to normal, so let's do that for labels as well
+		line-height: normal;
+
+		// Pimpin'!
+	}
+
+	// Breakpoint-specific styling - set label width
+	@each $breakpoint, $width in $_mb-forms__inline-labels-widths {
+		@include mq($from: $breakpoint) {
+			width: $width;
+		}
+	}
+}

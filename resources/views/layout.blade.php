@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 
-    <link href="{{ asset('vendor/laravel-administrator/style/css/main.7.css', env('FORCE_HTTPS', false)) }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/laravel-administrator/build/css/main.7.css', env('FORCE_HTTPS', false)) }}" rel="stylesheet" type="text/css">
 
     @yield('styles')
 
@@ -89,10 +89,15 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/datatables.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
+    <!--
     <script src="{{ asset('vendor/laravel-administrator/js/build/vendor.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
     <script src="{{ asset('vendor/laravel-administrator/js/build/mb-components.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
     <script src="{{ asset('vendor/laravel-administrator/js/build/components.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
     <script src="{{ asset('vendor/laravel-administrator/js/build/app.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
+    -->
+
+    <script src="{{ asset('vendor/laravel-administrator/build/js/vendor.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
+    <script src="{{ asset('vendor/laravel-administrator/build/js/app.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
 
     @yield('scripts')
 

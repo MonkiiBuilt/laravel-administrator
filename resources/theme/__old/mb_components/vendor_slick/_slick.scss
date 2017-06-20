@@ -1,0 +1,163 @@
+@import "src/slick.scss";
+
+//// VARIABLES
+$_mb-carousel__padding: $mb-carousel__padding;
+$_mb-carousel__default-style: $mb-carousel__default-style;
+$_mb-carousel__dots-align: $mb-carousel__dots-align;
+$_mb-carousel__dot-size: $mb-carousel__dot-size;
+$_mb-carousel__dot-color: $mb-carousel__dot-color;
+$_mb-carousel__dot-color--active: $mb-carousel__dot-color--active;
+$_mb-carousel__arrow-color: $mb-carousel__arrow-color;
+$_mb-carousel__arrow-bg-color: $mb-carousel__arrow-bg-color;
+$_mb-carousel__arrow-color--inactive: $mb-carousel__arrow-color--inactive;
+
+$_mb-carousel__overlay-opacity--inset: $mb-carousel__overlay-opacity--inset;
+$_mb-carousel__overlay-color--inset: $mb-carousel__overlay-color--inset;
+$_mb-carousel__dot-color--inset: $mb-carousel__dot-color--inset;
+$_mb-carousel__dot-color--inset--active: $mb-carousel__dot-color--inset--active;
+$_mb-carousel__arrow-color--inset: $mb-carousel__arrow-color--inset;
+$_mb-carousel__arrow-bg-color--inset: $mb-carousel__arrow-bg-color--inset;
+$_mb-carousel__arrow-color--inset--inactive: $mb-carousel__arrow-color--inset--inactive;
+
+
+// Extend slick default classes into our generic carousel ones
+.slick-arrow {
+  @extend .carousel__arrow;
+  &.slick-prev {
+    @extend .carousel__arrow--prev;
+  }
+  &.slick-next {
+    @extend .carousel__arrow--next;
+  }
+}
+.slick-dots {
+  @extend .carousel__dots;
+  button {
+    @extend .carousel__dot;
+  }
+  .slick-active {
+    button {
+      @extend .carousel__dot--active;
+    }
+  }
+}
+.slick-slide {
+  @extend .carousel__slide;
+}
+
+
+.carousel {
+  // Default style
+  @extend .carousel--#{$_mb-carousel__default-style} !optional;
+  position: relative;
+
+  &__arrow {
+    z-index: 10;
+    color: $_mb-carousel__arrow-color;
+    background-color: $_mb-carousel__arrow-bg-color;
+    border-color: $_mb-carousel__arrow-bg-color;
+
+    &--prev {
+      @include abs-align((top: middle, left: $_mb-carousel__padding));
+    }
+
+    &--next {
+      @include abs-align((top: middle, right: $_mb-carousel__padding));
+    }
+  }
+
+  &__dots {
+    @extend %list--unstyled;
+    z-index: 10;
+    @include abs-align($_mb-carousel__dots-align);
+    margin: 0;
+
+    li {
+      display: inline-block;
+      margin-left: $_mb-carousel__dot-size/4;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    .carousel__dot {
+      font-size: 0;
+      border: none;
+      width: $_mb-carousel__dot-size;
+      height: $_mb-carousel__dot-size;
+      padding: 0;
+      border-radius: 50% !important;
+      background: $_mb-carousel__dot-color;
+      &:focus, &:hover, &:active, &--active {
+        background: $_mb-carousel__dot-color--active;
+      }
+    }
+  }
+
+  &__slide {
+    &, img {
+      width: 100%;
+    }
+  }
+
+  &__title, &__content {
+    z-index: 10;
+    @extend %text--centered;
+  }
+
+  &__button {
+    //@extend .btn;
+  }
+
+  &--inset {
+    .carousel {
+      &__slide {
+        z-index: 1;
+        &::after {
+          @extend %pseudo-block;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          height: 30%;
+          background: linear-gradient(rgba($_mb-carousel__overlay-color--inset, 0), rgba($_mb-carousel__overlay-color--inset, $_mb-carousel__overlay-opacity--inset));
+          z-index: 0;
+        }
+      }
+
+
+      &__arrow {
+        color: $_mb-carousel__arrow-color--inset;
+        background-color: $_mb-carousel__arrow-bg-color--inset;
+        border-color: $_mb-carousel__arrow-bg-color--inset;
+      }
+
+      &__content {
+        text-align: inherit;
+        position: absolute;
+        left: $_mb-carousel__padding;
+        bottom: 2*$_mb-carousel__padding;
+        right: $_mb-carousel__padding;
+        color: $_mb-carousel__dot-color--inset--active;
+      }
+
+      &__title {
+        .carousel > & {
+          @extend .carousel__content;
+        }
+        font-weight: $mb-global__font-weight-bold;
+      }
+
+      &__button {
+        //@extend %btn--inverse !optional;
+      }
+
+      &__dot {
+        background: $_mb-carousel__dot-color--inset;
+        &:focus, &:hover, &:active, &--active {
+          background: $_mb-carousel__dot-color--inset--active;
+        }
+      }
+    }
+  }
+}

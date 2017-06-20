@@ -1,0 +1,417 @@
+
+// Form Errors - Don't display the element until an error is present.
+.form__error {
+    display: none;
+    font-size: 1.2rem;
+
+    .error & {
+        display: inline-block;
+        margin-top: 0.5rem;
+    }
+}
+
+// Textbox
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], textarea {
+    border-radius: $mb-global__border-radius;
+    border: 1px solid $color__mercury;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+        border-color: $color__dusty-grey;
+    }
+
+    &:focus {
+        box-shadow: $mb-global__box-shadow-form-focus;
+    }
+}
+
+// Checkbox
+.form__label-check {
+    padding: 1.3rem 1.3rem 1.3rem 3.6rem;
+    cursor: pointer;
+
+    &:hover .checkbox {
+        border-color: $color__dusty-grey;
+    }
+
+    .checkbox {
+        border-color: $color__alto;
+        box-shadow: none;
+
+        .error & {
+            border: 1px solid $color__error;
+        }
+    }
+
+    .form-checkbox:checked + .checkbox {
+        background-color: $color__primary;
+        border-color: $color__primary;
+
+        &:after {
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc5MiIgaGVpZ2h0PSIxNzkyIiB2aWV3Qm94PSIwIDAgMTc5MiAxNzkyIiBmaWxsPSIjRkZGRkZGIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xNjcxIDU2NnEwIDQwLTI4IDY4bC03MjQgNzI0LTEzNiAxMzZxLTI4IDI4LTY4IDI4dC02OC0yOGwtMTM2LTEzNi0zNjItMzYycS0yOC0yOC0yOC02OHQyOC02OGwxMzYtMTM2cTI4LTI4IDY4LTI4dDY4IDI4bDI5NCAyOTUgNjU2LTY1N3EyOC0yOCA2OC0yOHQ2OCAyOGwxMzYgMTM2cTI4IDI4IDI4IDY4eiIvPjwvc3ZnPg==);
+            background-size: 1.6rem 1.6rem;
+            background-position: center;
+        }
+    }
+    .form-checkbox:focus + .checkbox {
+        border-color: $color__primary;
+        box-shadow: $mb-global__box-shadow-form-focus;
+    }
+
+    &.form__label-check--unbold {
+        font-weight: normal;
+
+        .error & {
+            color: black;
+        }
+    }
+
+    &.form__label-check--dark {
+        background-color: $color__concrete;
+        border-radius: $mb-global__border-radius-form;
+        padding-left: 4.5rem;
+
+        .form-checkbox + .checkbox {
+            left: 1.4rem;
+        }
+    }
+}
+
+// Radio button - Rebuild monkiiBars radio button for designed styling on selected
+.form__label-radio {
+    background-color: $color__concrete;
+    border-radius: $mb-global__border-radius-form;
+    padding: 1.3rem 1.3rem 1.3rem 4.8rem;
+    border: 1px solid $color__concrete;
+    cursor: pointer;
+    width: 100%;
+
+    &:hover {
+        border-color: $color__dusty-grey;
+    }
+
+    .panel__inset & {
+        background-color: white;
+    }
+
+    .radio-button__label {
+        font-size: 1.6rem;
+
+        .radio-button {
+        	display: block;
+        	position: absolute;
+        	width: 2rem;
+        	height: 2rem;
+        	top: 1.4rem;
+        	left: 1.4rem;
+        	border: .1rem solid $color__dusty-grey;
+        	background-color: white;
+        	z-index: 1;
+        	border-radius: 1rem;
+        }
+
+        .error & {
+            color: black;
+        }
+    }
+
+    .form-radio-button:checked {
+        & + .radio-button__label {
+            font-family: $mb-global__font-secondary;
+
+            .radio-button {
+                background-color: $color__primary;
+                border-color: $color__primary;
+
+                &:after {
+                	content: '';
+                	display: block;
+                	position: absolute;
+                	width: 1rem;
+                	height: 1rem;
+                	top: 0;
+                	bottom: 0;
+                	left: 0;
+                	right: 0;
+                	margin: auto;
+                	background-color: #fff;
+                	border-radius: 50%;
+                }
+            }
+        }
+    }
+    .form-radio-button:focus + .radio-button__label .radio-button {
+        border-color: $color__primary;
+        box-shadow: $mb-global__box-shadow-form-focus;
+    }
+    .form-radio-button:checked:focus + .radio-button__label .radio-button {
+        box-shadow: 0 0 0.6rem 0 rgba(73, 191, 181, 1);
+    }
+
+    .error & {
+        border-color: $color__error;
+    }
+}
+
+// Fix for chosen spritesheet
+.chosen-container-single .chosen-single abbr {
+  background-image: none;
+}
+.chosen-container-single .chosen-single div b {
+  background-image: none;
+}
+.chosen-container-single .chosen-search input[type="text"] {
+  background-image: none;
+}
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+  background-image: none;
+}
+.chosen-rtl .chosen-search input[type="text"] {
+  background-image: none;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  .chosen-rtl .chosen-search input[type="text"],
+  .chosen-container-single .chosen-single abbr,
+  .chosen-container-single .chosen-single div b,
+  .chosen-container-single .chosen-search input[type="text"],
+  .chosen-container-multi .chosen-choices .search-choice .search-choice-close,
+  .chosen-container .chosen-results-scroll-down span,
+  .chosen-container .chosen-results-scroll-up span {
+    background-image: none !important;
+  }
+}
+
+// Dropdown - Rejigger chosen
+.chosen-container-single .chosen-single {
+    background: white;
+    font-size: 1.6rem;
+    padding: 0.9rem 1.7rem 1rem 1.7rem;
+    height: 4.5rem;
+    border-radius: $mb-global__border-radius-form;
+    border-color: $color__alto;
+    box-shadow: unset;
+    color: black;
+
+    div {
+        width: 4.5rem;
+        border-left: 1px solid $color__alto;
+
+        b {
+            background-image: url(images/chosen_v.gif);
+            background-size: 1.4rem 0.9rem;
+            background-position: center;
+            background-color: $color__concrete;
+        }
+    }
+
+    &:hover {
+        border-color: $color__dusty-grey;
+
+        div {
+            border-color: $color__dusty-grey;
+        }
+    }
+
+    .error & {
+        border-color: $color__error;
+
+        div {
+            border-color: $color__error;
+        }
+    }
+}
+.chosen-container-active.chosen-with-drop {
+    .chosen-single {
+        background: $color__mercury;
+
+        div b {
+            display: none;
+        }
+    }
+
+    .chosen-drop {
+        background: $color__mercury;
+
+        .error & {
+            border-color: $color__error;
+        }
+    }
+}
+.chosen-container-single {
+    .panel__left & {
+        width: 100% !important; // Helps with panels toggled off and on
+    }
+}
+.panel__left .chosen-container-single {
+    &.time {
+        width: 29% !important;
+    }
+}
+
+// Multi select
+.chosen-container-multi .chosen-choices {
+    background: white;
+    font-size: 1.6rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: $mb-global__border-radius-form;
+    border-color: $color__alto;
+    box-shadow: unset;
+    color: black;
+
+    li.search-choice {
+        padding: 0.8rem 2.4rem 1rem 1rem;
+        background: $color__primary;
+        border: none;
+        color: white;
+        box-shadow: none;
+
+        .search-choice-close {
+            top: 0.9rem;
+            right: 0.6rem;
+            background-image: url(images/chosen_cross.gif);
+            background-size: 1.2rem 1.3rem;
+            background-position: center;
+        }
+    }
+}
+.chosen-container-multi {
+    .panel__left & {
+        width: 100% !important; // Helps with panels toggled off and on
+    }
+}
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close:hover {
+    background-position: 50%;
+    opacity: 0.5;
+}
+
+// Calendar widget
+.calendar_widget {
+    $day-size: 4.2rem;
+
+    padding: 2rem;
+    background-color: $color__concrete;
+    text-align: center;
+
+    .error & {
+        border: 1px solid $color__error;
+    }
+
+    .label {
+        color: black;
+        font-size: 1.4rem;
+        font-weight: bold;
+        text-align: center;
+        padding-bottom: 0.5rem;
+    }
+
+    thead {
+        td {
+            text-align: center;
+            font-size: 1.2rem;
+            color: black;
+
+            &.weekend {
+                color: darken($color__mine-shaft, 5%);
+            }
+        }
+    }
+
+    .day {
+        width: $day-size;
+        height: $day-size;
+        border: 0.1rem solid $color__concrete;
+        text-align: center;
+
+        a {
+            display: block;
+            width: $day-size;
+            height: $day-size;
+            line-height: $day-size;
+            font-size: 1.4rem;
+            background-color: white;
+            color: darken($color__mine-shaft, 5%);
+            font-weight: normal;
+            text-decoration: none;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $color__primary;
+                color: white;
+            }
+            &.selected {
+                background-color: $color__scorpion;
+                color: white;
+            }
+
+            .modal & {
+                line-height: 1;
+            }
+        }
+    }
+}
+
+// Submit Button Override
+button[type="submit"], input[type="submit"] {
+    &.btn--primary {
+        background-color: $color__havelock-blue;
+        border-color: $color__havelock-blue;
+        color: white;
+
+        &:hover {
+            background-color: $color__havelock-blue;
+            border-color: $color__havelock-blue;
+            color: white;
+        }
+    }
+}
+
+
+// Form Plain button
+form.plain {
+    display: inline;
+    float: right;
+    margin-right: 2rem;
+
+    button[type='submit'] {
+        display: inline;
+        padding: 0;
+        margin: 0;
+        border: none;
+        background-color: transparent;
+        color: $color__primary;
+        font-size: 1.725rem;
+        vertical-align: initial;
+        font-weight: normal;
+    }
+}
+
+// File uplaoder
+.file-uploader {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+
+    & + label {
+        font-size: 1.25em;
+        font-weight: 700;
+        color: white;
+        background-color: black;
+        border-color: black;
+        display: inline-block;
+        cursor: pointer;
+    }
+}
+.file-uploader:focus + label,
+.file-uploader + label:hover {
+    background-color: $color__primary;
+}
+.inputfile + label * {
+	pointer-events: none;
+}
+
+.error .cke {
+    border: 1px solid $color__error;
+}

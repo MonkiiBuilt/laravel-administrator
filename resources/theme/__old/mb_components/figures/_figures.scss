@@ -1,0 +1,101 @@
+
+/**
+ *
+ * FIGURES
+ *
+ * Used to present single or multiple images with a caption and credit below.
+ *
+ * Tested to work on (windows/mac):
+ *	Chrome xx.xx+
+ *	Safari xx.xx+
+ *	Firefox xx.xx+
+ *	IE xx.xx+
+ *	Android xx.xx+
+ *	iOS xx.xx+
+ */
+
+
+
+//// VARIABLES
+//// -------------------------------------------
+// Variables which are just straight mappings should not be overrideable here
+// (i.e., no !default on the end). Variables which reference $mb-global-* or
+// are modifying other variables (e.g., mix(...)) should have !default on the
+// end so they can be individually overridden if need be
+
+$_mb-figures__figcaption-padding: $mb-figures__figcaption-padding;
+$_mb-figures__figcaption-border-bottom: $mb-figures__figcaption-border-bottom;
+$_mb-figures__figcaption-font-size: $mb-figures__figcaption-font-size;
+$_mb-figures__figcaption-font-style: $mb-figures__figcaption-font-style;
+$_mb-figures__credit-padding: $mb-figures__credit-padding;
+
+
+
+//// DEFINITIONS
+//// Add/remove as needed per project
+//// -------------------------------------------
+
+figure {
+	display: table;
+
+	figcaption {
+		display: table-caption;
+		caption-side: bottom;
+		padding: $_mb-figures__figcaption-padding;
+		border-bottom: $_mb-figures__figcaption-border-bottom;
+		font-size: $_mb-figures__figcaption-font-size;
+	}
+
+	img {
+		width: 100%;
+
+		@include mq($from: m) {
+			width: auto;
+		}
+	}
+}
+
+.figcaption__inner {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+
+	@include mq($from: m) {
+		flex-direction: row;
+	}
+}
+
+.figcaption__content {
+	font-style: $_mb-figures__figcaption-font-style;
+}
+
+.figcaption__credit {
+	flex-shrink: 0;
+	padding: get-map-value($_mb-figures__credit-padding, 's');
+
+	@include mq($from: m) {
+		padding: get-map-value($_mb-figures__credit-padding, 'm');
+	}
+}
+
+.figure-images__container {
+	display: flex;
+	flex-wrap: wrap;
+
+	@include mq($from: m) {
+		flex-wrap: nowrap;
+	}
+}
+
+.figure-images__item {
+	width: 100%;
+
+	@include mq($from: m) {
+		width: auto;
+	}
+}
+
+
+
+//// SILENT CLASSES
+//// -------------------------------------------

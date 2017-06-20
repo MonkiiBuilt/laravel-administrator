@@ -1,0 +1,25 @@
+/**
+* Utilities
+*
+* - Included by default from project to project
+* - Reusable classes for common solutions
+* - Mixins
+*/
+
+// For links, buttons.
+%subtle-link-transition {
+	transition: background-color 0.2s,
+				color 0.2s,
+	border-color 0.2s;
+}
+
+// Retrieve z-index value from $z-layers defined in _variables.scss - @andrew
+// usage:
+//   z-index: get-z("modal");
+@function get-z($layer) {
+	@if map-has-key($z-layers, $layer) {
+		@return map-get($z-layers, $layer);
+	} @else {
+		@debug "#{$layer} does not exist in the $z-layers map. Property omitted.";
+	}
+}

@@ -1,0 +1,44 @@
+
+/**
+ *
+ * TOGGLE
+ *
+ * Togglable element - can be applied to anything so not a lot of styling
+ * Contains an on element, and off element, and a switch element
+ * Switch element can be a first child or wrapped within the on/off elements (so can change content when toggle is on/off)
+ *
+ * JS toggles the class 'toggle--off' on the parent whenever switch is clicked
+ *
+ */
+
+//// DEFINITIONS
+//// Add/remove as needed per project
+//// -------------------------------------------
+
+@include static-elements(toggle, (on off switch));
+@include static-modifiers(toggle, (on off));
+
+
+//// SILENT CLASSES
+//// -------------------------------------------
+
+%toggle {
+
+}
+
+%toggle__off {
+  display: none;
+}
+
+%toggle__switch {
+  cursor: pointer;
+}
+
+%toggle--off {
+  %toggle__off {
+    display: inherit;
+  }
+  %toggle__on {
+    display: none;
+  }
+}

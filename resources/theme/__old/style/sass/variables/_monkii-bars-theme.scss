@@ -1,0 +1,140 @@
+
+/**
+ *
+ * Monkii Bar Theme
+ *
+ *
+ * Alter these variables to customise the appearance of MB Components for your site.
+ *
+ * 1rem = 10px
+ */
+
+
+//// GLOBAL
+//// Can be used in any component
+//// -------------------------------------------
+$mb-global__border-radius: 0.5rem !default;
+$mb-global__border-radius-form: 0.3rem !default;
+$mb-global__box-shadow   : 0 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.1) !default;
+$mb-global__box-shadow-form-focus : 0 0 0.6rem 0 rgba(73, 191, 181, 0.5) !default;
+
+// Fonts
+$mb-global__font-primary  : "Avenir Medium", Arial, sans-serif !default;
+$mb-global__font-secondary: "Avenir Bold", Arial, sans-serif !default;
+$mb-global__font-italic:    "Avenir Italic", Arial, sans-serif !default;
+
+$mb-global__default-font-size: 1.5rem !default;
+$mb-global__default-line-height: 1.4 !default;
+
+// Normalize focus style and add a default style? (see base/_general.scss)
+$mb-global__normalize-focus: false !default;
+
+
+//// TYPOGRAPHY
+//// -------------------------------------------
+
+$mb-forms__placeholder-font-style: normal;
+
+// Body text
+$mb-typography__default-margin: 1.3rem 0 !default;
+$mb-typography__default-color : $color__scorpion !default;
+
+$mb-typography__p-lead-font-size: 1.2em !default;
+
+// Headings
+$mb-typography__heading-font-family: $mb-global__font-secondary !default;
+$mb-typography__heading-line-height: 1.2 !default;
+$mb-typography__heading-color      : $mb-typography__default-color !default;
+$mb-typography__heading-margin     : 1.3rem 0 !default;
+
+$mb-typography__h1-font-size: 3.2rem !default;
+$mb-typography__h2-font-size: 2.5rem !default;
+$mb-typography__h3-font-size: 2rem !default;
+$mb-typography__h4-font-size: 1.8rem !default;
+$mb-typography__h5-font-size: 1.6rem !default;
+$mb-typography__h6-font-size: 1.2rem !default;
+
+$mb-typography__link-color       : $color__primary !default;
+$mb-typography__link-color-hover : $mb-typography__default-color !default;
+$mb-typography__link-color-active: $mb-typography__link-color-hover !default;
+$mb-typography__link-font-weight: normal !default;
+$mb-typography__link-decoration : none !default;
+$mb-typography__link-decoration--hover: underline !default;
+$mb-typography__link-transition : color ease-out 0.3s !default;
+
+
+//// BUTTONS
+//// -------------------------------------------
+
+// Defaults
+$mb-buttons__default-color   		       : $mb-typography__default-color !default;
+$mb-buttons__default-color--hover          : mix(black, $mb-buttons__default-color, 20%) !default;
+$mb-buttons__default-color--disabled       : lighten($mb-buttons__default-color, 55) !default;
+$mb-buttons__default-color--active         : $mb-buttons__default-color--hover !default;
+$mb-buttons__default-bg-color		       : $color__silver !default;
+$mb-buttons__default-bg-color--hover       : mix(black, $mb-buttons__default-bg-color, 20%) !default;
+$mb-buttons__default-bg-color--disabled    : lighten($mb-buttons__default-bg-color, 10) !default;
+$mb-buttons__default-bg-color--active      : $mb-buttons__default-bg-color--hover !default;
+$mb-buttons__default-border-color          : $mb-buttons__default-bg-color !default;
+$mb-buttons__default-border-color--hover   : $mb-buttons__default-bg-color--hover !default;
+$mb-buttons__default-border-color--disabled: $mb-buttons__default-bg-color--disabled !default;
+$mb-buttons__default-border-color--active  : $mb-buttons__default-bg-color--active !default;
+
+// Box model
+$mb-buttons__padding: 1.2rem 2.8rem !default;
+
+
+// Other
+$mb-buttons__border-width : 0.1rem !default;
+$mb-buttons__border-radius: $mb-global__border-radius !default;
+
+
+//// Primary button ////
+$mb-buttons__primary-color                 : white !default;
+$mb-buttons__primary-color--hover          : $mb-buttons__primary-color !default;
+$mb-buttons__primary-color--disabled       : lighten($mb-buttons__primary-color, 10) !default;
+$mb-buttons__primary-color--active         : $mb-buttons__primary-color--hover !default;
+$mb-buttons__primary-bg-color              : $color__primary !default;
+$mb-buttons__primary-bg-color--hover       : mix(black, $mb-buttons__primary-bg-color, 20%) !default;
+$mb-buttons__primary-bg-color--disabled    : lighten($mb-buttons__primary-bg-color, 30) !default;
+$mb-buttons__primary-bg-color--active      : $mb-buttons__primary-bg-color--hover !default;
+$mb-buttons__primary-border-color          : $mb-buttons__primary-bg-color !default;
+$mb-buttons__primary-border-color--hover   : $mb-buttons__primary-bg-color--hover !default;
+$mb-buttons__primary-border-color--disabled: $mb-buttons__primary-bg-color--disabled !default;
+$mb-buttons__primary-border-color--active  : $mb-buttons__primary-bg-color--active !default;
+
+//// Secondary button ////
+$mb-buttons__secondary-color   			     : $mb-buttons__default-color !default;
+$mb-buttons__secondary-color--hover	         : $mb-buttons__secondary-color !default;
+$mb-buttons__secondary-color--disabled	     : lighten($mb-buttons__secondary-color, 52) !default;
+$mb-buttons__secondary-color--active         : $mb-buttons__secondary-color--hover !default;
+$mb-buttons__secondary-bg-color		         : $color__secondary !default;
+$mb-buttons__secondary-bg-color--hover       : mix(black, $mb-buttons__secondary-bg-color, 20%) !default;
+$mb-buttons__secondary-bg-color--disabled    : lighten($mb-buttons__secondary-bg-color, 2) !default;
+$mb-buttons__secondary-bg-color--active      : $mb-buttons__secondary-bg-color--hover !default;
+$mb-buttons__secondary-border-color          : $mb-buttons__secondary-bg-color !default;
+$mb-buttons__secondary-border-color--hover   : $mb-buttons__secondary-bg-color--hover !default;
+$mb-buttons__secondary-border-color--disabled: $mb-buttons__secondary-bg-color--disabled !default;
+$mb-buttons__secondary-border-color--active  : $mb-buttons__secondary-bg-color--active !default;
+
+//// Tertiary button ////
+$mb-buttons__tertiary-color   			    : white !default;
+$mb-buttons__tertiary-color--hover    	    : $mb-buttons__tertiary-color !default;
+$mb-buttons__tertiary-color--disabled   	: darken($mb-buttons__tertiary-color, 5) !default;
+$mb-buttons__tertiary-color--active         : $mb-buttons__tertiary-color--hover !default;
+$mb-buttons__tertiary-bg-color			    : $color__scorpion !default;
+$mb-buttons__tertiary-bg-color--hover       : mix(black, $mb-buttons__tertiary-bg-color, 20%) !default;
+$mb-buttons__tertiary-bg-color--disabled    : lighten($mb-buttons__tertiary-bg-color, 40) !default;
+$mb-buttons__tertiary-bg-color--active      : $mb-buttons__default-bg-color--hover !default;
+$mb-buttons__tertiary-border-color          : $mb-buttons__tertiary-bg-color !default;
+$mb-buttons__tertiary-border-color--hover   : $mb-buttons__tertiary-bg-color--hover !default;
+$mb-buttons__tertiary-border-color--disabled: $mb-buttons__tertiary-bg-color--disabled !default;
+$mb-buttons__tertiary-border-color--active  : $mb-buttons__tertiary-bg-color--active !default;
+
+//// Larger button ////
+$mb-buttons--large-padding  : 1.4rem 3.6rem !default;
+$mb-buttons--large-font-size: 1.8rem !default;
+
+//// Smaller button ////
+$mb-buttons--small-padding  : 0.8rem 2.2rem !default;
+$mb-buttons--small-font-size: 1.725rem !default;

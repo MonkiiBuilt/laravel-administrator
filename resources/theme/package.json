@@ -1,0 +1,31 @@
+{
+  "name": "laravel-administrator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^1.0.1",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-svgstore": "^6.1.0",
+    "gulp-uglify": "^2.1.2",
+    "jquery": "^3.2.1",
+    "normalize-scss": "^7.0.0",
+    "sass-mq": "^3.3.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MonkiiBuilt/laravel-administrator.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

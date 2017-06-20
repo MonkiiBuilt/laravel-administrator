@@ -1,0 +1,43 @@
+/**
+* Font Families
+*
+* - All @font-face definitions should be in here
+* - Taken from: http://www.paulirish.com/2009/bulletproof-font-face-implementation-syntax/
+*
+* Supports:
+*	Chrome 3.5+
+*	Safari 3+
+*	Firefox 3.5+
+*	IE 9+
+*	Android 4.4+
+*	iOS 5.1+
+*
+*/
+
+$fonts-directory-path: '../../fonts/' !default;
+
+//// AvenirNext LT Pro Bold ////
+@font-face {
+  font-family: 'Avenir Bold';
+  src: url($fonts-directory-path + "AvenirNextLTPro-Bold.eot");
+  src: url($fonts-directory-path + "AvenirNextLTPro-Bold.eot?#iefix") format("embedded-opentype"), url($fonts-directory-path + "AvenirNextLTPro-Bold.woff") format("woff"), url($fonts-directory-path + "AvenirNextLTPro-Bold.ttf") format("truetype"), url($fonts-directory-path + "AvenirNextLTPro-Bold.svg#webfont") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+
+//// AvenirNext LT Pro Medium ////
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url($fonts-directory-path + "AvenirNextLTPro-Medium.eot");
+  src: url($fonts-directory-path + "AvenirNextLTPro-Medium.eot?#iefix") format("embedded-opentype"), url($fonts-directory-path + "AvenirNextLTPro-Medium.woff") format("woff"), url($fonts-directory-path + "AvenirNextLTPro-Medium.ttf") format("truetype"), url($fonts-directory-path + "AvenirNextLTPro-Medium.svg#webfont") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+
+//// AvenirNext LT Pro Medium Italic ////
+@font-face {
+  font-family: 'Avenir Italic';
+  src: url($fonts-directory-path + "AvenirNextLTPro-MediumIt.eot");
+  src: url($fonts-directory-path + "AvenirNextLTPro-MediumIt.eot?#iefix") format("embedded-opentype"), url($fonts-directory-path + "AvenirNextLTPro-MediumIt.woff") format("woff"), url($fonts-directory-path + "AvenirNextLTPro-MediumIt.ttf") format("truetype"), url($fonts-directory-path + "AvenirNextLTPro-MediumIt.svg#webfont") format("svg");
+  font-weight: normal;
+  font-style: normal; }

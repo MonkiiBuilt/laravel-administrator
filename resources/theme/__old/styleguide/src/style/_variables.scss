@@ -1,0 +1,45 @@
+
+/**
+ *
+ * Styleguide - Variables
+ *
+ * Using pixels instead of rem to avoid rem conflicts with imported themes.
+ *
+ * 1. Point at which layout switches to sidebar layout
+ * 2. Display currently active breakpoint in browser window. Order list smallest to highest
+ *
+ */
+
+
+// Define our custom Styleguide breakpoints to avoid confusion with
+// any other imported MQ breakpoints
+$breakpoint-s: 320px;
+$breakpoint-m: 900px;
+$breakpoint-l: 1200px;
+
+
+// General
+$sg-content-padding: (
+	s: 20px,
+	m: 50px,
+	l: 70px
+);
+$sg-layout-bp-change: $breakpoint-m; // [1]
+$sg-sidebar-width: 250px;
+$sg-sidebar-padding: (
+	s: 10px,
+	m: 30px
+);
+$sg-header-padding-s: 14px;
+
+// Colours
+$sg-color__bg        : #f1f1f1;
+$sg-color__content-bg: white;
+$sg-color__text-main : #787878;
+$sg-color__highlight : #1592bb;
+
+// Menu
+$sg-menu-icon-width : 32px;
+$sg-menu-icon-color : #444;
+
+$sg-menu-icon-bar-height: 4px;

@@ -1,0 +1,535 @@
+
+/**
+* Utilities
+*
+* - Included by default from project to project
+* - Reusable classes for common solutions
+* - Mixins
+*/
+
+// Clearfix
+// for clearing floated children.
+// Usage: .parent { @extend %clearfix; }
+%clearfix {
+	&::after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
+
+// SR-only
+// for hiding an element visually but visible to screen readers
+%sr-only {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+// For links, buttons.
+%subtle-link-transition {
+	transition: background-color 0.2s,
+				color 0.2s,
+	border-color 0.2s;
+}
+
+// Normalize focus style
+%focus--none {
+	// IE ... 7?
+	* {
+		_noFocusLine: expression(this.hideFocus=true);
+	}
+	// FF
+	::-moz-focus-inner {
+		border: 0;
+	}
+	:focus {
+		outline-color: transparent;
+		outline-style: none;
+	}
+}
+
+// Visibility classes
+%hidden {
+	&--mobile {
+		@include mq($until: $mb-global__mobile) {
+			display: none !important;
+		}
+	}
+	&--tablet-up {
+		@include mq($from: $mb-global__mobile) {
+			display: none !important;
+		}
+	}
+	&--tablet-landscape-up {
+		@include mq($from: $mb-global__tablet-portrait) {
+			display: none !important;
+		}
+	}
+	&--tablet-portrait-down {
+		@include mq($until: $mb-global__tablet-portrait) {
+			display: none !important;
+		}
+	}
+	&--tablet-down {
+		@include mq($until: $mb-global__tablet-landscape) {
+			display: none !important;
+		}
+	}
+	&--desktop-up {
+		@include mq($from: $mb-global__tablet-landscape) {
+			display: none !important;
+		}
+	}
+}
+
+// A pseudo-block like ::before or ::after
+%pseudo-block {
+	content: '';
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+}
+
+// Icon background - using eg. postcss-svg for inline svg bg image
+%icon-background {
+	@extend .icon;
+	background-size: contain;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+
+
+// MIXINS and FUNCTIONS
+// ----------------------------------
+// Get a variable map value - @andrew
+// usage; width: get-map-value($somemap, 'desktop')
+@function get-map-value($map, $key) {
+	@if map-has-key($map, $key) {
+		@return map-get($map, $key);
+	} @else {
+		@debug "#{$key} does not exist in the map #{$map}. Property omitted.";
+	}
+}
+
+// Retrieve z-index value from $z-layers defined in _variables.scss - @andrew
+// usage:
+//   z-index: get-z("modal");
+@function get-z($layer) {
+	@if map-has-key($z-layers, $layer) {
+		@return map-get($z-layers, $layer);
+	} @else {
+		@debug "#{$layer} does not exist in the $z-layers map. Property omitted.";
+	}
+}
+
+// Print property ONLY if the value is different from the original
+// Prevents repeating property declarations
+@mixin if-changed ($prop-name, $val-original, $val-override) {
+	@if $val-original != $val-override {
+		// Different; render out the property with the override value.
+		#{$prop-name}: $val-override;
+	}
+
+	// Otherwise, no change, do not render the override value.
+}
+
+
+/*
+* Truncate text to ensure it doesn't overflow its container.
+* Possible $overflow values are: clip, ellipsis, or a string
+* Note: This will only work on single lines, not multiple lines
+*/
+@mixin truncateText($overflow: ellipsis) {
+	overflow: hidden;
+	text-overflow: $overflow;
+	white-space: nowrap;
+}
+
+
+
+/**
+ * Responsive Properties Generator
+ *
+ * Useful for setting up multiple tags with properties & values for different
+ * media queries, and assigning them to only one variable.
+ *
+ *
+ */
+@mixin mq-props($props-list) {
+	@if $props-list == false {
+		// Do not output responsive values (likely disabled for this property)
+		@return "";
+	}
+
+	@each $breakpoint, $props in $props-list {
+		// Ensure that this key exists as a breakpoint
+		@if map-has-key($mq-breakpoints, $breakpoint) {
+			// Media query-surrounded property
+			@include mq($from: $breakpoint) {
+				@each $prop, $value in $props {
+					#{$prop}: $value;
+				}
+			}
+		}
+		@else {
+			@warn 'Breakpoint `#{ $breakpoint }` does not match to sass-mq breakpoints!';
+		}
+	}
+}
+
+
+
+/**
+ * Responsive Property Mixin - shorthand alternative to mq-props
+ *
+ * Useful to apply a property & value for each breakpoint in a given map
+ *
+ * $props: css property name or list of property names
+ * $breakpoint-map: values to assign the $props keyed by breakpoint names, eg. see $container-gutter
+ * $value: optional expression as a string to evaluate each breakpoint value, eg. '2*$value', '$value 0', etc.
+ * $from / $to: optional breakpoint names to apply the properties from and to
+ *
+ */
+@mixin mq-apply-props($props, $breakpoint-map, $value: '$value', $from: null, $until: null) {
+	$active: true;
+	@if $from {
+		$active: false;
+	}
+
+	@each $breakpoint, $breakpoint-value in $breakpoint-map {
+		@if $from and quote($breakpoint) == quote($from) {
+			$active: true;
+		}
+		@if $active {
+			$breakpoint-value: str-replace($value, '$value', $breakpoint-value);
+
+			// Loop over properties to set
+			@each $property in $props {
+
+				// Set xxxs breakpoint value as default (no media query)
+				@if quote($breakpoint) == 'xxxs' {
+					#{$property}: calc(#{$breakpoint-value});
+				}
+					// Else use a media query from this breakpoint
+				@else {
+					@include mq($from: $breakpoint) {
+						#{$property}: calc(#{$breakpoint-value});
+					}
+				}
+			}
+		}
+		@if $until and quote($breakpoint) == quote($until) {
+			$active: false;
+		}
+	}
+}
+
+
+
+/**
+ * Shorthand Value Extractor
+ *
+ * Useful for getting a single value (eg. top) from a shorthand eg. padding value (top right bottom left)
+ * $key: key you want to retrieve (eg. 'left')
+ * $list: shorthand value to extract $key from (eg. 10px 20px)
+ * $keys: a map describing all possible keys of the (full) shorthand value, and a value to map to if not present
+ */
+@function shorthand-value($key, $list, $keys: (top: null, right: top, bottom: top, left: right)) {
+	@if type-of($list) != list {
+		$list: ($list,);
+	}
+
+	// Find $key in $keys
+	$index: index(map-keys($keys), $key);
+
+	// Get the value from the list
+	@if $index {
+		// If index is defined in $list
+		@if $index <= length($list) {
+			@return nth($list, $index);
+		}
+		// If index is not in $list - eg. getting 'left' from padding: 10px, padding: 10px 20px, or padding: 10px 20px 30px
+		@else {
+			$mapped-key: nth(map-values($keys), $index);
+			@return shorthand-value($mapped-key, $list, $keys);
+		}
+	}
+
+	// If all else fails, return null so that compilation will fail
+}
+
+
+/**
+ * Link Style Mixin
+ *
+ * Useful shorthand way to set the colors of a link - normal, hover, active, visited states
+ */
+@mixin link-colors($color, $hover-color: null, $active-color: null, $visited-color: $color) {
+	@if $hover-color == null {
+		@if lightness($color) > 50% {
+			$hover-color: darken($color, 20%);
+		}
+		@else {
+			$hover-color: lighten($color, 20%);
+		}
+	}
+	@if $active-color == null {
+		$active-color: $hover-color;
+	}
+
+	color: $color;
+	&:hover, &:focus {
+		color: $hover-color;
+	}
+
+	&.active, &:active {
+		color: $active-color;
+	}
+
+	&:visited {
+		$color: $visited-color;
+	}
+}
+
+
+/**
+ * Focus mixin
+ * Apply style to focused focusable elements!
+ */
+@mixin focus() {
+	//a[href],			// should we include all links even with empty href? eg. js triggers etc
+	a,
+	area[href],
+	input:not([disabled]),
+	select:not([disabled]),
+	textarea:not([disabled]),
+	button:not([disabled]),
+	iframe,
+	[tabindex],
+	[contentEditable=true] {
+		&:not([tabindex="-1"]) {
+			&:focus {
+				@content;
+			}
+			&::-moz-focus-inner {
+				@content;
+			}
+		}
+	}
+}
+
+
+/**
+ * Device mixins
+ */
+// Mobile only - shouldn't need this one with mobile-first styling!
+@mixin mobile() {
+	@include mq($until: $mb-global__mobile) {
+		@content;
+	}
+}
+// Tablet only
+@mixin tablet() {
+	@include mq($from: $mb-global__mobile, $until: $mb-global__tablet-landscape) {
+		@content;
+	}
+}
+// Tablet and up
+@mixin tablet-up() {
+	@include mq($from: $mb-global__mobile) {
+		@content;
+	}
+}
+// Desktop and up
+@mixin desktop-up() {
+	@include mq($from: $mb-global__tablet-landscape) {
+		@content;
+	}
+}
+
+
+/**
+ * Row Mixin
+ */
+@mixin row($h-align: full, $v-align: top, $from: mobile, $modifiers: ()) {
+	@extend %row;
+	@extend %row--#{$h-align};
+	@extend %row--#{$v-align};
+	@extend %row--#{$from}-up;
+
+	@if type-of($modifiers) != list {
+		$modifiers: ($modifiers,);
+	}
+	@each $modifier in $modifiers {
+		@extend %row--#{$modifier} !optional;
+	}
+}
+
+
+/**
+ * Absolute align mixin
+ */
+@mixin abs-align($offsets-map) {
+	position: absolute;
+	@each $offset, $value in $offsets-map {
+		@if $value == center or $value == middle {
+			@if $offset == left or $offset == right {
+				left: 50%;
+				transform: translateX(-50%);
+			}
+			@else if $offset == top or $offset == bottom {
+				top: 50%;
+				transform: translateY(-50%);
+			}
+		}
+		@else {
+			#{$offset}: $value;
+		}
+	}
+}
+
+
+/**
+ * Attribute Match mixin
+ *
+ * Useful to construct a selector for elements whose specified attribute matches
+ * the simple passed pattern, using '*' as a wildcard either at start or end of $pattern
+ * (minimal functionality to avoid selector overload)
+ *
+ * examples:
+ * @include attr-match(class, "block--*") { background: red; }
+ * will style any element with a class matching the pattern 'block--*' with a red background
+ * eg. .block--foo, .block--bar
+ *
+ * @include attr-match(class, "block--*", false) { background: blue; }
+ * will style any element WITHOUT a class matching the pattern 'block--*' with a blue background
+ */
+@mixin attr-match($attr, $pattern, $match: true, $delim: ' ') {
+	// Let's init an empty list of selectors to be constructed
+	$selectors: ();
+
+	// Is a wildcard used?
+	$index: str-index($pattern, '*');
+	// Is wildcard used at the start?
+	@if $index == 1 {
+		$end: str-slice($pattern, 2);
+		// Attribute either ends with $end, or contains $end + $delim
+		// (eg. multiple space-separated classes)
+		$selectors: append($selectors, '[#{$attr}$="#{$end}"]');
+		$selectors: append($selectors, '[#{$attr}*="#{$end}#{$delim}"]');
+	}
+	// Is wildcard used at the end?
+	@else if $index == str-length($pattern) {
+		$start: str-slice($pattern, 1, -2);
+		// Similar approach as above
+		$selectors: append($selectors, '[#{$attr}^="#{$start}"]');
+		$selectors: append($selectors, '[#{$attr}*="#{$delim}#{$start}"]');
+	}
+	// If no wildcard
+	@else {
+		@if $delim == ' ' {
+			$selectors: append($selectors, '[#{$attr}~="#{$pattern}"]');
+		}
+		@else if $delim == '|' {
+			$selectors: append($selectors, '[#{$attr}|="#{$pattern}"]');
+		}
+	}
+
+	@if length($selectors) {
+		$selector-string: '';
+		@if $match {
+			// true OR true
+			$selector-string: '&' + to-string($selectors, ', &');
+		} @else {
+			// false AND false
+			$selector-string: '&:not(' + to-string($selectors, '):not(') + ')';
+		}
+
+		@if $selector-string {
+			#{$selector-string} {
+				@content;
+			}
+		}
+	}
+}
+
+
+/**
+ * Default Style mixin
+ * Useful to add a default modifier to a given class selector if no modifier is present in the HTML
+ */
+@mixin default-style($class, $modifier) {
+	@include attr-match(class, "#{$class}--*", false) {
+		$default-class: "#{$class}--#{$modifier}";
+		@extend #{$default-class} !optional;
+		&:after {
+			@extend %pseudo-block;
+			content: $default-class;
+		}
+	}
+}
+
+
+/**
+ * List Delimiter mixin
+ * Style child elements inline with the given delimiter character
+ */
+@mixin list-delimiter($delimiter) {
+	@extend %list--inline;
+	li {
+		&:not(:first-child) {
+			padding-left: 0;
+			&:before {
+				@extend %pseudo-block;
+				content: $delimiter;
+				padding-right: inherit;
+			}
+		}
+	}
+}
+
+
+/**
+ * Static Classes mixin
+ * Useful to setup a list of static classes to extend same-named silent classes
+ * eg. to use in markup
+ */
+@mixin static-classes($base, $list: (), $join: '--') {
+	.#{$base} {
+		@extend %#{$base} !optional;
+	}
+
+	@if type-of($list) != list {
+		$list: ($list,);
+	}
+
+	@each $item in $list {
+		.#{$base}#{$join}#{$item} {
+			@extend %#{$base}#{$join}#{$item} !optional;
+		}
+	}
+}
+@mixin static-modifiers($base, $list: ()) {
+	@include static-classes($base, $list, '--');
+}
+@mixin static-elements($base, $list: ()) {
+	@include static-classes($base, $list, '__');
+}
+
+
+/**
+ * Column Width function
+ * Return a % width based on number of columns in a grid layout
+ * $num: num of columns
+ * $total: total number of columns
+ * $include-outer: include outer gutters (eg. if getting width for a box-sizing: padding-box element)
+ * $gutter: map of gutter widths, default $container-gutter
+ */
+@function grid-width($num, $total, $include-outer: true, $gutter: null) {
+	@if $gutter == null {
+		$last-breakpoint: nth(map-keys($container-gutter), length($container-gutter));
+		$gutter: map-get($container-gutter, $last-breakpoint);
+	}
+	@return $gutter;
+}

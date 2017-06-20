@@ -1,0 +1,198 @@
+
+//// STATIC CLASSES
+//// ---------------------------
+
+.container {
+	@extend %container;
+}
+
+//.row {
+//	@extend %row;
+//}
+
+
+//// SILENT CLASSES
+//// ---------------------------
+
+// Padding
+%responsive-padding {
+	@include mq-apply-props(padding, $container-gutter);
+
+	&--half {
+		@include mq-apply-props(padding, $container-gutter, '$value/2');
+	}
+
+	&--h {
+		@include mq-apply-props(padding-left padding-right, $container-gutter);
+	}
+
+	&--h-half {
+		@include mq-apply-props(padding-left padding-right, $container-gutter, '$value/2');
+	}
+
+	&--v {
+		@include mq-apply-props(padding-top padding-bottom, $container-gutter);
+	}
+}
+
+// Container
+
+%container {
+	width: 100%;
+	max-width: $site-width;
+	margin: 0 auto;
+	@extend %responsive-padding;
+
+	> %breakout {
+		@include mq-apply-props(margin-left margin-right, $container-gutter, '-$value');
+	}
+
+	&--flush-v {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+
+	&--half {
+		@extend %responsive-padding--half;
+		> %breakout {
+			@include mq-apply-props(margin-left margin-right, $container-gutter, '-$value/2');
+		}
+	}
+
+	&%row {
+		@extend %responsive-padding--h-half;
+	}
+
+}
+
+// Row
+
+%row {
+	// Common style
+
+	// Add gutter/2 padding to each flex child (on left/right)
+	> * {
+		@extend %responsive-padding--h-half;
+
+		// Remove top/bottom margins from child's content (eg. last <p> adding bottom margin, first <hX> adding top margin)
+		> *:last-child {
+			margin-top: 0;
+		}
+
+		> *:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	// And subtract this padding from the left/right margins
+	@include mq-apply-props(margin-left margin-right, $container-gutter, '-$value/2');
+
+	&%container {
+		margin: 0 auto;
+	}
+
+
+	// Modified styles
+
+	&--flush {
+		margin: 0;
+		> * {
+			padding: 0;
+		}
+	}
+
+	&--tight {
+		> * {
+			padding: 0.5rem;
+		}
+		margin-left: -0.5rem;
+		margin-right: -0.5rem;
+	}
+
+	&--loose {
+		> * {
+			@include mq-apply-props(padding-left padding-right, $container-gutter);
+		}
+		@include mq-apply-props(margin-left margin-right, $container-gutter, '-$value');
+	}
+
+	// Breakpoint-specific
+
+	&--mobile-up {
+		display: flex;
+	}
+
+	&--tablet-up {
+		display: inherit;
+		@include tablet-up {
+			display: flex;
+		}
+	}
+
+	&--desktop-up {
+		display: inherit;
+		@include desktop-up {
+			display: flex;
+		}
+	}
+
+	// Horizontal alignment
+
+	&--left {
+		justify-content: flex-start;
+	}
+
+	&--center {
+		justify-content: center;
+	}
+
+	&--right {
+		justify-content: flex-end;
+	}
+
+	&--full {
+		justify-content: space-between;
+	}
+
+	// Vertical alignment
+
+	&--top {
+		align-items: flex-start;
+		align-content: flex-start;	// for wrapped multi-line rows
+	}
+
+	&--middle {
+		align-items: center;
+		align-content: center;	// for wrapped multi-line rows
+	}
+
+	&--bottom {
+		align-items: flex-end;
+		align-content: flex-end;	// for wrapped multi-line rows
+	}
+
+	&--stretch {
+		align-items: stretch;
+		align-content: stretch;	// for wrapped multi-line rows
+	}
+
+	// Wrapping
+
+	&--wrap {
+		flex-wrap: wrap;
+		// Give wrapped items a bottom margin?
+		> * {
+			@include mq-apply-props(padding-top padding-bottom, $container-gutter, '$value/2');
+		}
+		@include mq-apply-props(margin-top margin-bottom, $container-gutter, '-$value/2');
+	}
+
+	&--no-wrap {
+		flex-wrap: nowrap;
+	}
+
+}
+
+%row-child--fixed-width {
+	flex: 0 0 auto;
+}
