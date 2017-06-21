@@ -186,3 +186,70 @@ function assetClose()
 {
     $.colorbox.close();
 }
+
+
+$(".chosen-select").chosen({search_contains: true, disable_search_threshold: 8});
+$(".chosen-select-plain").chosen({disable_search: true, inherit_select_classes: true});
+
+
+// We can call this when the dataTables have been setup
+function onTableSetup() {
+    setupConfirmModal();
+}
+
+// Setup confirmation modal
+var confirmForm = 0;
+function setupConfirmModal() {
+    $("form.confirm button[type='submit']").click(function () {
+        confirmForm = $(this).closest("form.confirm");
+
+        $.colorbox({
+            inline: true,
+            width: "30%",
+            href: "#confirm_content"
+        });
+
+        return false;
+    });
+}
+
+// Capture confirmation modal choice
+$(".confirm_link").click(function () {
+    var selection = $(this).text();
+
+    if (selection == "Yes") {
+        $(confirmForm).submit();
+        $.colorbox.close();
+    }
+    else { //if (selection == "No") {
+        $.colorbox.close();
+    }
+});
+
+$(function() {
+    // Call this immediately in case we're not using dataTables here
+    setupConfirmModal();
+
+    // Setup focus helper for Chosen dropdown plugin
+    $('body').on('focus', '.chosen-container-single input', function(e) {
+        //console.log(document.activeElement);
+        if (!$(this).closest('.chosen-container').hasClass('chosen-container-active')) {
+            var $chosenCont = $(this).closest('.chosen-container');
+            $($chosenCont).find("ul.chosen-results").attr("tabindex", "-1");
+            $($chosenCont).trigger('mousedown');
+        }
+    });
+});
+
+
+// Setup "Show more" on help
+$(".help__more").click(function () {
+
+    $(this).closest(".help__text").hide();
+
+    var fullHelp = $(this).closest(".help").find(".help__full");
+    $(fullHelp).hide();
+    $(fullHelp).addClass("open");
+    $(fullHelp).slideDown(200);
+
+});
