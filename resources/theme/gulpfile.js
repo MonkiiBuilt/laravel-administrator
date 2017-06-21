@@ -54,9 +54,9 @@ var styleBuild = gulp.series(style, minifyCss),
     iconsBuild = icons,
     fontsBuild = fonts;
 
+
 // Exposed tasks - You can run these from the cli
 // ---------------
-
 // Default task - Builds everything and starts a watch
 gulp.task('default', gulp.parallel(styleBuild, scriptsBuild, watch));
 
@@ -66,10 +66,12 @@ gulp.task('svg', iconsBuild);
 // 'fonts' task will move the fonts into the build folder
 gulp.task('fonts', fontsBuild);
 
+// 'build' task will run everything, but wont watch.
+gulp.task('build', gulp.parallel(styleBuild, scriptsBuild, iconsBuild, fontsBuild));
+
+
 // Private tasks
 // -------------
-
-
 // Style task - Compiles .scss files into .css, creates a source map, then runs
 // an auto prefixer on the css.
 function style() {
@@ -156,6 +158,7 @@ function icons() {
         .pipe(svgStore())
         .pipe(gulp.dest(paths.icons.dest));
 }
+
 
 // Fonts build task - copy all the fonts into the build folder
 function fonts() {
