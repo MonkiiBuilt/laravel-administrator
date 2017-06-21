@@ -28,7 +28,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views/', 'laravel-administrator');
 
         $this->publishes([
-            __DIR__.'/../resources/theme/build' => public_path('vendor/laravel-administrator/')
+            __DIR__.'/../resources/theme/dist' => public_path('vendor/laravel-administrator/')
         ], 'administrator-theme');
 
         $this->publishes([

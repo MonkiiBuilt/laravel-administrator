@@ -22,28 +22,28 @@ var gulp         = require('gulp'),
 var paths = {
     styles: {
         src:  './scss/**/*.scss',
-        dest: './build/css'
+        dest: './dist/css'
     },
     scripts: {
         app: {
             src:  './js/**/*.js',
-            dest: './build/js'
+            dest: './dist/js'
         },
         vendor: {
             src:  [
                 './node_modules/jquery/dist/jquery.min.js', // Always include jquery first
                 './js/vendor/**/*.js'
             ],
-            dest: './build/js'
+            dest: './dist/js'
         }
     },
     icons: {
         src:  './svg/icons/*.svg',
-        dest: './build/svg'
+        dest: './dist/svg'
     },
     fonts: {
         src:  './fonts/**/*.{ttf,woff,eof,svg}',
-        dest: './build/fonts'
+        dest: './dist/fonts'
     }
 };
 
@@ -60,14 +60,14 @@ var styleBuild = gulp.series(style, minifyCss),
 // Default task - Builds everything and starts a watch
 gulp.task('default', gulp.parallel(styleBuild, scriptsBuild, watch));
 
-// 'svg' task will run the icon build process, doesnt watch after.
+// 'build' task will run everything, but wont watch.
+gulp.task('build', gulp.parallel(styleBuild, scriptsBuild, iconsBuild, fontsBuild));
+
+// 'svg' task will run the icon build process, doesn't watch after.
 gulp.task('svg', iconsBuild);
 
 // 'fonts' task will move the fonts into the build folder
 gulp.task('fonts', fontsBuild);
-
-// 'build' task will run everything, but wont watch.
-gulp.task('build', gulp.parallel(styleBuild, scriptsBuild, iconsBuild, fontsBuild));
 
 
 // Private tasks
