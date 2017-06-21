@@ -91,14 +91,14 @@
     <script src="https://cdn.ckeditor.com/4.7.0/standard/ckeditor.js"></script>
 
     <!--
-    <script src="{{ asset('vendor/laravel-administrator/js/build/vendor.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
-    <script src="{{ asset('vendor/laravel-administrator/js/build/mb-components.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
-    <script src="{{ asset('vendor/laravel-administrator/js/build/components.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
-    <script src="{{ asset('vendor/laravel-administrator/js/build/app.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
+    <script src="{{ asset('vendor/laravel-administrator/js/build/vendor.min.js', env('FORCE_HTTPS', false)) }}"></script>
+    <script src="{{ asset('vendor/laravel-administrator/js/build/mb-components.min.js', env('FORCE_HTTPS', false)) }}"></script>
+    <script src="{{ asset('vendor/laravel-administrator/js/build/components.min.js', env('FORCE_HTTPS', false)) }}"></script>
+    <script src="{{ asset('vendor/laravel-administrator/js/build/app.min.js', env('FORCE_HTTPS', false)) }}"></script>
     -->
 
-    <script src="{{ asset('vendor/laravel-administrator/js/vendor.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
-    <script src="{{ asset('vendor/laravel-administrator/js/app.min.7.js', env('FORCE_HTTPS', false)) }}"></script>
+    <script src="{{ asset('vendor/laravel-administrator/js/vendor.min.js', env('FORCE_HTTPS', false)) }}"></script>
+    <script src="{{ asset('vendor/laravel-administrator/js/app.min.js', env('FORCE_HTTPS', false)) }}"></script>
 
     @yield('scripts')
 
