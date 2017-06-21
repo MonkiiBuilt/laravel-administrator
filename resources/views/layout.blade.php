@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 
-    <link href="{{ asset('vendor/laravel-administrator/css/main.7.css', env('FORCE_HTTPS', false)) }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/laravel-administrator/css/main.css', env('FORCE_HTTPS', false)) }}" rel="stylesheet" type="text/css">
 
     @yield('styles')
 
