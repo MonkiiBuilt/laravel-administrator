@@ -1376,6 +1376,27 @@ img {
     .container {
       padding: 0 3rem; } }
 
+.icons-svg {
+  display: none; }
+
+.icon {
+  display: inline-block;
+  position: relative;
+  width: 1em;
+  height: 1em;
+  top: 0.25ex;
+  fill: currentColor;
+  pointer-events: none; }
+  .btn .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 0.2rem; }
+  .btn--side-link .icon {
+    top: 0.1rem; }
+  .icon-side .icon {
+    float: right;
+    top: 0.5ex; }
+
 body {
   height: 100%;
   background-color: #e7e7e7; }

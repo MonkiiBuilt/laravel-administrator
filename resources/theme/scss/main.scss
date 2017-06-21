@@ -14,8 +14,8 @@
 
 // Vendor imports
 // --------------
-@import "./node_modules/sass-mq/mq";
-@import "./node_modules/normalize-scss/sass/normalize";
+@import "../node_modules/sass-mq/mq";
+@import "../node_modules/normalize-scss/sass/normalize";
 @import "vendor/string-functions";
 @import "vendor/list-functions";
 @import "vendor/cropper";
@@ -34,7 +34,7 @@
 
 // Component styles
 // -----------------
-//@import "components/header";
+@import "components/icons";
 
 
 // Page specific styles

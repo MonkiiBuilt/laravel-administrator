@@ -1,0 +1,50 @@
+
+// --------------------------------------------------
+// Icons
+// - We're using .svg icons
+//
+// @resources
+// http://css-tricks.com/svg-sprites-use-better-icon-fonts/
+// http://css-tricks.com/svg-symbol-good-choice-icons/
+//
+// @usage
+// <svg class="icon icon-xxxx"><use xlink:href="#icon-xxxx"></use></svg>
+// --------------------------------------------------
+
+.icons-svg {
+  display: none;
+}
+
+// 1. Roughly 1/5 of width and height seems to be correct for most icons, but there are issues with this. Trying top
+//    using x-height instead.
+// 2. Not sure which units are the best here, maybe ex is better as it would then relate to whatever the font size is?
+// 3. Due to the way the disclosure code is highly sensitive to the class name of the icon (to change from plus to minus
+//    for example), it is safer to modify this from a parent rather than directly affecting the icon. Not great, I know,
+//    but you can see the app.disclosure.js for more information about changing the SVG if you want to know more :)
+// 4. This one is tricky. There seems to be some severe issue between svg xlink and jQuery .on() which causes the SVG to
+//    fail to trigger an event in MSIE and Safari. By causing SVGs to never emit events, we can kind of mitigate that.
+//    It's really hackish, and will only salvage IE11+ and recent Safari versions, but it's better than nothing I guess?
+.icon {
+  display: inline-block;
+  position: relative;
+  width:  1em;
+  height: 1em;
+  top: 0.25ex; // [1]
+  fill: currentColor;
+  pointer-events: none; // [4]
+
+  .btn & {
+    width:  1.5rem;
+    height: 1.5rem;
+    top: 0.2rem;
+  }
+
+  .btn--side-link & {
+    top: 0.1rem; // [2]
+  }
+
+  .icon-side & {
+    float: right; // [3]
+    top: 0.5ex; // [2]
+  }
+}
