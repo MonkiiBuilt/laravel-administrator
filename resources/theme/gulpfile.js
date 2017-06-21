@@ -1,7 +1,7 @@
 
 // Monkii bars gulpfile
 // ------------------------
-// Usage: 'gulp'  
+// Usage: 'gulp'
 
 'use strict';
 
@@ -18,40 +18,41 @@ var gulp         = require('gulp'),
     autoPrefixer = require('gulp-autoprefixer');
 
 
-
 // Path config
 var paths = {
-  styles: {
-    src:  './scss/**/*.scss',
-    dest: './build/css'
-  },
-  scripts: {
-      app: {
-        src:  './js/**/*.js',
-        dest: './build/js'
-      },
-      vendor: {
-        src:  [
-            './node_modules/jquery/dist/jquery.min.js', // Always include jquery first
-            './js/vendor/**/*.js'
-        ], 
-        dest: './build/js'
-      }
-  },
-  icons: {
-      src:  './svg/icons/*.svg',
-      dest: './svg/'
-  }
+    styles: {
+        src:  './scss/**/*.scss',
+        dest: './build/css'
+    },
+    scripts: {
+        app: {
+            src:  './js/**/*.js',
+            dest: './build/js'
+        },
+        vendor: {
+            src:  [
+                './node_modules/jquery/dist/jquery.min.js', // Always include jquery first
+                './js/vendor/**/*.js'
+            ],
+            dest: './build/js'
+        }
+    },
+    icons: {
+        src:  './svg/icons/*.svg',
+        dest: './build/svg'
+    },
+    fonts: {
+        src:  './fonts/**/*.{ttf,woff,eof,svg}',
+        dest: './build/fonts'
+    }
 };
-
 
 
 // Create variables that have a list of tasks to run for the different builds
 var styleBuild = gulp.series(style, minifyCss),
     scriptsBuild = gulp.parallel(scriptsApp, scriptsVendor),
-    iconsBuild = icons;
-
-
+    iconsBuild = icons,
+    fontsBuild = fonts;
 
 // Exposed tasks - You can run these from the cli
 // ---------------
@@ -62,16 +63,18 @@ gulp.task('default', gulp.parallel(styleBuild, scriptsBuild, watch));
 // 'svg' task will run the icon build process, doesnt watch after.
 gulp.task('svg', iconsBuild);
 
-
+// 'fonts' task will move the fonts into the build folder
+gulp.task('fonts', fontsBuild);
 
 // Private tasks
 // -------------
 
-// Style task - Compiles .scss files into .css, creates a source map, then runs 
+
+// Style task - Compiles .scss files into .css, creates a source map, then runs
 // an auto prefixer on the css.
 function style() {
     return gulp.src(paths.styles.src)
-        // Start the scss source map
+    // Start the scss source map
         .pipe(sourceMaps.init())
 
         // Compile the sass
@@ -92,7 +95,7 @@ function style() {
 // with a .min suffix. Ignores any file with .min already in its filename.
 function minifyCss() {
     return gulp.src([paths.styles.dest + '/**/*.css', '!' + paths.styles.dest + '/**/*.min*'])
-        // Minify the css
+    // Minify the css
         .pipe(cleanCSS({debug: true, compatibility: '*'}))
 
         // Add the .min suffix so we know this is the minified file
@@ -108,7 +111,7 @@ function minifyCss() {
 // Scripts App task - Uglifies and concat's app javascript
 function scriptsApp() {
     return gulp.src(paths.scripts.app.src)
-        // Start the JS source map
+    // Start the JS source map
         .pipe(sourceMaps.init())
 
         // Concat all the files to a .min file
@@ -128,7 +131,7 @@ function scriptsApp() {
 // Scripts Vendor task - Uglifies and concat's vendor javascript
 function scriptsVendor() {
     return gulp.src(paths.scripts.vendor.src)
-        // Start the JS source map
+    // Start the JS source map
         .pipe(sourceMaps.init())
 
         // Concat all the files to a .min file
@@ -152,6 +155,12 @@ function icons() {
         .pipe(rename({ prefix: 'icon-' }))
         .pipe(svgStore())
         .pipe(gulp.dest(paths.icons.dest));
+}
+
+// Fonts build task - copy all the fonts into the build folder
+function fonts() {
+    return gulp.src(paths.fonts.src)
+        .pipe(gulp.dest(paths.fonts.dest));
 }
 
 
