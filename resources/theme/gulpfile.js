@@ -94,11 +94,11 @@ function style() {
         // Compile the sass
         .pipe(sass().on('error', sass.logError))
 
-        // Write the source map
-        .pipe(sourceMaps.write('.'))
-
         // Apply the auto prefixer
         .pipe(autoPrefixer())
+
+        // Write the source map
+        .pipe(sourceMaps.write())
 
         // Save a copy of the unminfied css
         .pipe(gulp.dest(paths.styles.dest))
