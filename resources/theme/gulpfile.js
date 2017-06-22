@@ -9,6 +9,7 @@
 var gulp         = require('gulp'),
     sass         = require('gulp-sass'),
     rename       = require('gulp-rename'),
+    filter       = require('gulp-filter'),
     uglify       = require('gulp-uglify'),
     concat       = require('gulp-concat'),
     svgStore     = require('gulp-svgstore'),
@@ -143,15 +144,24 @@ function scriptsApp() {
 
 // Scripts Vendor task - Uglifies and concat's vendor javascript
 function scriptsVendor() {
+    // Create a filter excluding '.min' files from getting minified again
+    const minFilter = filter(['**', '!*.min.*'], { restore: true });
+
     return gulp.src(paths.scripts.vendor.src)
-    // Start the JS source map
+        // Start the JS source map
         .pipe(sourceMaps.init())
 
         // Concat all the files to a .min file
         .pipe(concat('vendor.min.js'))
 
+        // Apply the filter we created above
+        .pipe(minFilter)
+
         // Uglify the JS
         .pipe(uglify())
+
+        // Restore files from the filter
+        .pipe(minFilter.restore)
 
         // Write the source map
         .pipe(sourceMaps.write('.'))
