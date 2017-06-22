@@ -21,28 +21,41 @@ var gulp         = require('gulp'),
 // Path config
 var paths = {
     styles: {
-        src:  './scss/**/*.scss',
+        src:  './src/scss/**/*.scss',
         dest: './dist/css'
     },
     scripts: {
         app: {
-            src:  './js/**/*.js',
+            src:  './src/js/**/*.js',
             dest: './dist/js'
         },
         vendor: {
             src:  [
                 './node_modules/jquery/dist/jquery.min.js', // Always include jquery first
-                './js/vendor/**/*.js'
+                './src/js/vendor/**/*.js'
             ],
             dest: './dist/js'
         }
     },
     icons: {
-        src:  './svg/icons/*.svg',
+        src:  './src/svg/icons/*.svg',
+        dest: './src/svg'
+    },
+    images: {
+        src: './src/img/**/*',
+        dest: './dist/img'
+    },
+    svgs: {
+        src: [
+            './src/svg/**/*',
+            // Exclude the icons directory (these should be in a spritesheet)
+            '!./src/svg/icons',
+            '!./src/svg/icons/**'
+        ],
         dest: './dist/svg'
     },
     fonts: {
-        src:  './fonts/**/*.{ttf,woff,eof,svg}',
+        src:  './src/fonts/**/*.{ttf,woff,eof,svg}',
         dest: './dist/fonts'
     }
 };
@@ -51,23 +64,21 @@ var paths = {
 // Create variables that have a list of tasks to run for the different builds
 var styleBuild = gulp.series(style, minifyCss),
     scriptsBuild = gulp.parallel(scriptsApp, scriptsVendor),
-    iconsBuild = icons,
+    iconsBuild = gulp.series(icons, svgs),
+    imagesBuild = gulp.parallel(images, svgs),
     fontsBuild = fonts;
 
 
 // Exposed tasks - You can run these from the cli
 // ---------------
 // Default task - Builds everything and starts a watch
-gulp.task('default', gulp.parallel(styleBuild, scriptsBuild, watch));
+gulp.task('default', gulp.parallel(styleBuild, scriptsBuild, imagesBuild, watch));
 
 // 'build' task will run everything, but wont watch.
-gulp.task('build', gulp.parallel(styleBuild, scriptsBuild, iconsBuild, fontsBuild));
+gulp.task('build', gulp.series(gulp.parallel(styleBuild, scriptsBuild, iconsBuild, fontsBuild), gulp.parallel(imagesBuild)));
 
-// 'svg' task will run the icon build process, doesn't watch after.
+// 'svg' task will run the icon build process, but wont watch.
 gulp.task('svg', iconsBuild);
-
-// 'fonts' task will move the fonts into the build folder
-gulp.task('fonts', fontsBuild);
 
 
 // Private tasks
@@ -159,8 +170,20 @@ function icons() {
         .pipe(gulp.dest(paths.icons.dest));
 }
 
+// Images build task - Copy all of the images in 'src/img' into the 'dist/img' folder
+function images() {
+    return gulp.src(paths.images.src)
+        .pipe(gulp.dest(paths.images.dest));
+}
 
-// Fonts build task - copy all the fonts into the build folder
+// SVG build task - Copy all of the images in 'src/svg' into the 'dist/svg' folder, this excludes the 'icons' folder as
+// these should be compiled into the 'icons.svg' spritesheet. To compile a new SVG icon spritesheet run the 'icons' task.
+function svgs() {
+    return gulp.src(paths.svgs.src)
+        .pipe(gulp.dest(paths.svgs.dest));
+}
+
+// Fonts build task - Copy all the fonts in the 'src/fonts' folder into the 'dist/fonts' folder
 function fonts() {
     return gulp.src(paths.fonts.src)
         .pipe(gulp.dest(paths.fonts.dest));
@@ -175,4 +198,8 @@ function watch() {
     // Js watches - Runs uglify and concats app and vendor Js
     gulp.watch(paths.scripts.app.src, scriptsBuild);
     gulp.watch(paths.scripts.vendor.src, scriptsBuild);
+
+    // Image watches
+    gulp.watch(paths.images.src, imagesBuild);
+    gulp.watch(paths.svgs.src, imagesBuild);
 }
