@@ -30,13 +30,11 @@
                     var el = $('textarea[name="'+ event.editor.name + '"]');
 
                     if ($(el).closest("form").hasClass("warn-on-change")) {
-
                         event.editor.on('change', function(e) {
                             if (this.checkDirty()) {
                                 isDirty = true;
                             }
                         });
-
                     }
                 });
             }
@@ -59,3 +57,8 @@
     };
 
 })(jQuery, window);
+
+
+$(document).ready(function() {
+    $('form.warn-on-change').warnIfChanged();
+});
