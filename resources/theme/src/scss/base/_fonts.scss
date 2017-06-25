@@ -14,30 +14,24 @@
 *
 */
 
-$fonts-directory-path: '../../fonts/' !default;
-
-//// AvenirNext LT Pro Bold ////
-@font-face {
-  font-family: 'Avenir Bold';
-  src: url($fonts-directory-path + "AvenirNextLTPro-Bold.eot");
-  src: url($fonts-directory-path + "AvenirNextLTPro-Bold.eot?#iefix") format("embedded-opentype"), url($fonts-directory-path + "AvenirNextLTPro-Bold.woff") format("woff"), url($fonts-directory-path + "AvenirNextLTPro-Bold.ttf") format("truetype"), url($fonts-directory-path + "AvenirNextLTPro-Bold.svg#webfont") format("svg");
-  font-weight: normal;
-  font-style: normal; }
+$fonts-directory-path: '../fonts/' !default;
 
 
-//// AvenirNext LT Pro Medium ////
-@font-face {
-  font-family: 'Avenir Medium';
-  src: url($fonts-directory-path + "AvenirNextLTPro-Medium.eot");
-  src: url($fonts-directory-path + "AvenirNextLTPro-Medium.eot?#iefix") format("embedded-opentype"), url($fonts-directory-path + "AvenirNextLTPro-Medium.woff") format("woff"), url($fonts-directory-path + "AvenirNextLTPro-Medium.ttf") format("truetype"), url($fonts-directory-path + "AvenirNextLTPro-Medium.svg#webfont") format("svg");
-  font-weight: normal;
-  font-style: normal; }
+//// Font Family Name ////
+//@font-face {
+//	font-family: 'FontFamilyName';
+//	src: url($fonts-directory-path + 'filename.eot?') format('eot'),
+//		 url($fonts-directory-path + 'filename.woff2') format('woff2'),
+//		 url($fonts-directory-path + 'filename.woff') format('woff'),
+//		 url($fonts-directory-path + 'filename.ttf') format('truetype');
+//}
 
 
-//// AvenirNext LT Pro Medium Italic ////
-@font-face {
-  font-family: 'Avenir Italic';
-  src: url($fonts-directory-path + "AvenirNextLTPro-MediumIt.eot");
-  src: url($fonts-directory-path + "AvenirNextLTPro-MediumIt.eot?#iefix") format("embedded-opentype"), url($fonts-directory-path + "AvenirNextLTPro-MediumIt.woff") format("woff"), url($fonts-directory-path + "AvenirNextLTPro-MediumIt.ttf") format("truetype"), url($fonts-directory-path + "AvenirNextLTPro-MediumIt.svg#webfont") format("svg");
-  font-weight: normal;
-  font-style: normal; }
+//// Font Family Name ////
+//@font-face {
+//	font-family: 'FontFamilyName';
+//	src: url($fonts-directory-path + 'filename.eot?') format('eot'),
+//		 url($fonts-directory-path + 'filename.woff2') format('woff2'),
+//		 url($fonts-directory-path + 'filename.woff') format('woff'),
+//		 url($fonts-directory-path + 'filename.ttf') format('truetype');
+//}

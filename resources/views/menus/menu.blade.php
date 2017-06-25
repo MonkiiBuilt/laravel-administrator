@@ -6,11 +6,7 @@
  * @copyright 2008 - present, Monkii Digital Agency (http://monkii.com.au)
  */
 ?>
-<nav class="nav">
-    <div class="wrapper">
-        @foreach($menu as $routeName => $item)
-            <a href="{{ route($routeName) }}" class="{{ $item['class'] }}">{{ $item['label'] }}</a>
-        @endforeach
-    </div>
-</nav>
+@foreach($menu as $routeName => $item)
+    <li><a href="{{ route($routeName) }}" class="{{ $item['class'] }}">{{ $item['label'] }}</a></li>
+@endforeach
 

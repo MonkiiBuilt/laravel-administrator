@@ -7,16 +7,20 @@
 
     <title>Administrator Dashboard</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/datatables.min.css"/>
+    <!-- Styles - START -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <!-- Bootstrap Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+    <!-- Project CSS -->
     <link href="{{ asset('vendor/laravel-administrator/css/main.css', env('FORCE_HTTPS', false)) }}" rel="stylesheet" type="text/css">
 
     @yield('styles')
+    <!-- Styles - END -->
+
 
     @php($user = \Auth::user())
 
@@ -24,55 +28,60 @@
 
 </head>
 <body>
-<div class="inner-body">
+    <div class="container">
 
-    <!-- Header -->
-    <header class="header">
+        <!-- Header - START -->
+        <header class="header">
 
-        <div class="wrapper">
+            <nav class="navbar  navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/admin">Monkii</a>
+                    </div>
 
-            <div class="home">
-                <a class="logo" href="/admin"><img src="" alt="dashboard"></a>
-            </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            @each('vendor.laravel-administrator.menus.menu', $laravelAdministratorMenus, 'menu')
+                        </ul>
 
-            @if ($user)
-                <div class="user">
-                    <span>Welcome {{ $user->first_name }}!</span>
-                    <a href="">Edit your account</a>
-                    <a href="{{ url('/logout') }}">Logout</a>
-                </div>
-            @endif
+                        @if ($user)
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Username <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/admin/pls/giff/url">Edit your account</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="{{ url('/logout') }}">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        @endif
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
 
-        </div>
+        </header>
+        <!-- Header - END -->
 
-    </header>
 
-    <!-- Nav -->
-    @each('vendor.laravel-administrator.menus.menu', $laravelAdministratorMenus, 'menu')
-
-    <div class="wrapper">
-
-        <div class="main-wrapper content">
-
+        <!-- Content - START -->
+        <div class="main-content">
             @yield('content')
         </div>
+        <!-- Content - END -->
 
-    </div><!-- END .wrapper -->
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-
-        <div class="wrapper">
-
-            <div class="footer-inner">
-                Need some footer content here.
-            </div>
-
-        </div>
-
-    </footer>
-
-    <!-- JavaScripts -->
+    <!-- JavaScript includes - START -->
+    <!-- Google analytics -->
     <script type="text/javascript">
         //<!--
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -82,40 +91,21 @@
 
         ga('create', 'UA-798241-1', 'auto');
         ga('send', 'pageview');    //-->
-    </script>
+    </script>'
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/datatables.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <!-- Project vendor JS -->
+    <script src="{{ asset('vendor/laravel-administrator/js/vendor.min.js', env('FORCE_HTTPS', false)) }}"></script>
+
+    <!-- CKEditor -->
     <script src="https://cdn.ckeditor.com/4.7.0/standard/ckeditor.js"></script>
 
-    <!--
-    <script src="{{ asset('vendor/laravel-administrator/js/build/vendor.min.js', env('FORCE_HTTPS', false)) }}"></script>
-    <script src="{{ asset('vendor/laravel-administrator/js/build/mb-components.min.js', env('FORCE_HTTPS', false)) }}"></script>
-    <script src="{{ asset('vendor/laravel-administrator/js/build/components.min.js', env('FORCE_HTTPS', false)) }}"></script>
-    <script src="{{ asset('vendor/laravel-administrator/js/build/app.min.js', env('FORCE_HTTPS', false)) }}"></script>
-    -->
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <script src="{{ asset('vendor/laravel-administrator/js/vendor.min.js', env('FORCE_HTTPS', false)) }}"></script>
+    <!-- Project app JS -->
     <script src="{{ asset('vendor/laravel-administrator/js/app.min.js', env('FORCE_HTTPS', false)) }}"></script>
 
     @yield('scripts')
-
-    @if (\App::environment('staging'))
-        <script type="text/javascript">
-            (function() {
-                var s = document.createElement("script");
-                s.type = "text/javascript";
-                s.async = true;
-                s.src = '//api.usersnap.com/load/'+
-                    'b9e3f45f-001b-43e2-ba55-a2b50128ff3a.js';
-                var x = document.getElementsByTagName('script')[0];
-                x.parentNode.insertBefore(s, x);
-            })();
-        </script>
-    @endif
-
-</div><!-- END .inner-body -->
+    <!-- JavaScript includes - END -->
 </body>
 </html>

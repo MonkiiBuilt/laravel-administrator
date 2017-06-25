@@ -16,12 +16,6 @@
 // --------------
 @import "../../node_modules/sass-mq/mq";
 @import "../../node_modules/normalize-scss/sass/normalize";
-@import "vendor/string-functions";
-@import "vendor/list-functions";
-@import "vendor/cropper";
-@import "vendor/dropzone";
-@import "vendor/chosen";
-@import "vendor/colorbox";
 
 
 // Base styles
@@ -34,24 +28,10 @@
 
 // Component styles
 // -----------------
+@import "components/header";
 @import "components/icons";
 
 
 // Page specific styles
 // --------------------
-//@import "pages/home";
-
-
-// Sections
-// --------
-@import "sections/general";
-@import "sections/nav";
-@import "sections/sidebar";
-@import "sections/forms";
-@import "sections/media";
-@import "sections/page";
-@import "sections/approvals";
-@import "sections/assets";
-@import "sections/carousel";
-@import "sections/lists";
-@import "sections/analytics";
+@import "pages/home";
