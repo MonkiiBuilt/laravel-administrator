@@ -43,7 +43,9 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/admin">Monkii</a>
+                        <a class="navbar-brand" href="/admin">
+                            <img alt="Monkii" src="/vendor/laravel-administrator/img/logo.png" width="50px">
+                        </a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
