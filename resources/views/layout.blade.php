@@ -93,7 +93,7 @@
 
         ga('create', 'UA-798241-1', 'auto');
         ga('send', 'pageview');    //-->
-    </script>'
+    </script>
 
     <!-- Project vendor JS -->
     <script src="{{ asset('vendor/laravel-administrator/js/vendor.min.js', env('FORCE_HTTPS', false)) }}"></script>
