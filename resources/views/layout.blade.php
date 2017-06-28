@@ -57,11 +57,18 @@
                         @if ($user)
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Username <span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $user->name }} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/admin/pls/giff/url">Edit your account</a></li>
+                                        <!-- <li><a href="/admin/pls/giff/url">Edit your account</a></li> -->
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="{{ url('/logout') }}">Logout</a></li>
+                                        <!-- <li><a href="{{ url('/logout') }}">Logout</a></li> -->
+                                        <li>
+                                            <form class="form-horizontal" role="form" method="POST" action="{{ route('logout') }}">
+                                                {{ csrf_field() }}
+
+                                                <input type="submit" value="Logout">
+                                            </form>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>

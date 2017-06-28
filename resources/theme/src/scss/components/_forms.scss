@@ -1,0 +1,42 @@
+form.plain {
+  display: inline;
+
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+  }
+}
+
+form.inline {
+  display: inline;
+}
+
+.icon-btn {
+  display: inline-block;
+  color: #337ab7;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: #23527c;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+
+  .icon {
+    width: 1.1em;
+    height: 1.1em;
+  }
+
+  &+.icon-btn,
+  &+form.plain {
+    margin-left: 0.5rem;
+  }
+}
