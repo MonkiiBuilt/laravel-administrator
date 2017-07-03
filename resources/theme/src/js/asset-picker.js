@@ -57,6 +57,9 @@ function assetInit()
         }
     });
 }
+
+var $modal;
+
 function assetOpen(caller, title)
 {
     // $("body").css("overflow-y", "hidden");
@@ -71,10 +74,11 @@ function assetOpen(caller, title)
     //     }
     // });
 
-    var $modal = $('#asset-picker-modal').modal(),
-        $modalBody = $modal.find('.modal-body');
+    $modal = $('#asset-picker-modal').modal();
 
-    $modalBody.load(window.assetModalURL, function(responseText, textStatus) {
+    var $modalBody = $modal.find('.modal-body');
+
+    $modalBody.load(window.assetModalURL + "?id=" + caller, function(responseText, textStatus) {
         if ( textStatus === 'success' ||
             textStatus === 'notmodified')
         {
@@ -82,12 +86,14 @@ function assetOpen(caller, title)
         }
     });
 }
+
 function assetSelected(caller, URL)
 {
     $("#"+caller).val(URL);
     assetInit();
 }
+
 function assetClose()
 {
-    $.colorbox.close();
+    $modal.modal('hide');
 }
