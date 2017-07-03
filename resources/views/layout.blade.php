@@ -60,15 +60,19 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $user->name }} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <!-- <li><a href="/admin/pls/giff/url">Edit your account</a></li> -->
-                                        <li role="separator" class="divider"></li>
-                                        <!-- <li><a href="{{ url('/logout') }}">Logout</a></li> -->
+                                        <!-- <li role="separator" class="divider"></li> -->
+                                        <li><a href="{{ url('/logout') }}">Logout</a></li>
+
+                                        <!--
+                                        Commenting this out as the form styling is getting crazy, would be better if we didnt need a whole form to render one button, which should be a link. - CC.
                                         <li>
-                                            <form class="form-horizontal" role="form" method="POST" action="{{ route('logout') }}">
+                                            <form class="plain" role="form" method="POST" action="{{ route('logout') }}">
                                                 {{ csrf_field() }}
 
-                                                <input type="submit" value="Logout">
+                                                <button type="submit">Logout</button>
                                             </form>
                                         </li>
+                                        -->
                                     </ul>
                                 </li>
                             </ul>
@@ -104,6 +108,9 @@
 
     <!-- Project vendor JS -->
     <script src="{{ asset('vendor/laravel-administrator/js/vendor.min.js', env('FORCE_HTTPS', false)) }}"></script>
+
+    <!-- jQuery UI (Used by elfinder) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
     <!-- CKEditor -->
     <script src="https://cdn.ckeditor.com/4.7.0/standard/ckeditor.js"></script>
