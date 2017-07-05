@@ -1,6 +1,6 @@
 {
   "name": "laravel-administrator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "require": {
     "php": ">=5.5.9",
     "laravel/framework": "5.4.*",
