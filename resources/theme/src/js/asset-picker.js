@@ -58,33 +58,11 @@ function assetInit()
     });
 }
 
-var $modal;
-
 function assetOpen(caller, title)
 {
-    // $("body").css("overflow-y", "hidden");
-    // $.colorbox({
-    //     iframe:true,
-    //     top:0,
-    //     width:"1000px",
-    //     height:"100%",
-    //     href:window.assetModalURL + "?id=" + caller + "&title=" + title,
-    //     onClosed:function() {
-    //         $("body").css("overflow-y", "scroll");
-    //     }
-    // });
-
-    $modal = $('#asset-picker-modal').modal();
-
-    var $modalBody = $modal.find('.modal-body');
-
-    $modalBody.load(window.assetModalURL + "?id=" + caller, function(responseText, textStatus) {
-        if ( textStatus === 'success' ||
-            textStatus === 'notmodified')
-        {
-            $modal.show();
-        }
-    });
+    $('.asset-picker-iframe').attr('src', '');
+    var modal = $('#asset-picker-modal').modal();
+    modal.find('.asset-picker-iframe').attr('src', window.assetModalURL + "?id=" + caller);
 }
 
 function assetSelected(caller, URL)
@@ -95,5 +73,5 @@ function assetSelected(caller, URL)
 
 function assetClose()
 {
-    $modal.modal('hide');
+    $('.modal.in').modal('hide');
 }
