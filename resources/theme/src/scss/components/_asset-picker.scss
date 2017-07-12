@@ -1,0 +1,21 @@
+
+.asset-add,
+.asset-clear {
+  color: $color__mariner;
+
+  &:hover {
+    text-decoration: none;
+    color: darken($color__mariner, 5);
+    border-bottom: solid 1px darken($color__mariner, 5);
+  }
+}
+
+.asset-img {
+  display: block;
+  max-width: 20rem;
+  max-height: 20rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

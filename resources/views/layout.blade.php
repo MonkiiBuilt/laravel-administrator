@@ -121,7 +121,7 @@
     <!-- Project app JS -->
     <script src="{{ asset('vendor/laravel-administrator/js/app.min.js', env('FORCE_HTTPS', false)) }}"></script>
 
-    @yield('scripts')
+    @stack('scripts')
     <!-- JavaScript includes - END -->
 </body>
 </html>
