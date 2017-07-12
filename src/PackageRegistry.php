@@ -27,6 +27,11 @@ class PackageRegistry implements ComponentsRegistryInterface
     protected $configs = [];
 
     /**
+     * @var array
+     */
+    protected $tab_groups = [];
+
+    /**
      * @return array
      */
     public function getPackages()
@@ -63,5 +68,30 @@ class PackageRegistry implements ComponentsRegistryInterface
     public function registerConfig($config)
     {
         $this->configs[] = $config;
+    }
+
+    /**
+     * @param $title
+     * @param $href
+     * @param $group
+     * @param null $position - can be first, last or null for auto
+     */
+    public function registerTab($title, $href, $group, $position = null)
+    {
+        $this->tab_groups[$group] = isset($this->tab_groups[$group]) ? $this->tab_groups[$group] : new TabGroup($group);
+        $this->tab_groups[$group]->createTab($title, $href, $position);
+    }
+
+    /**
+     * @param $group
+     * @param $id
+     * @return mixed
+     */
+    public function getTabs($group, $id)
+    {
+        if(isset($this->tab_groups[$group])) {
+            $tabGroup = $this->tab_groups[$group];
+            return $tabGroup->render($id);
+        }
     }
 }
