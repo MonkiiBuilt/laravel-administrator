@@ -18,7 +18,7 @@
     <!-- Project CSS -->
     <link href="{{ asset('vendor/laravel-administrator/css/main.css', env('FORCE_HTTPS', false)) }}" rel="stylesheet" type="text/css">
 
-    @yield('styles')
+    @stack('styles')
     <!-- Styles - END -->
 
 

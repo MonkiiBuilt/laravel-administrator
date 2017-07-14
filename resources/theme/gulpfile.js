@@ -27,13 +27,13 @@ var paths = {
     },
     scripts: {
         app: {
-            src:  './src/js/**/*.js',
+            src:  ['./src/js/**/*.js', '!./src/js/vendor/**/*'],
             dest: './dist/js'
         },
         vendor: {
             src:  [
                 './node_modules/jquery/dist/jquery.min.js', // Always include jquery first
-                './src/js/vendor/**/*.js'
+                './src/js/vendor/sortablejs/jquery.fn.sortable.js',
             ],
             dest: './dist/js'
         }

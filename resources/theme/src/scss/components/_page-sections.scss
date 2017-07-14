@@ -1,0 +1,60 @@
+.page-section {
+
+}
+
+.page-section__heading {
+    display: flex;
+    
+    padding: 0;
+}
+
+.panel-title {
+    flex-grow: 1;
+}
+
+.panel-title__link {
+    padding: 10px 15px;
+    display: block;
+
+    &:hover,
+    &:focus,
+    &:hover:focus {
+        text-decoration: none;
+    }
+
+    .icon {
+        width: 1.2rem;
+        height: 1.2rem;
+        top: 0.1ex;
+        transition: transform 0.3s ease-out;
+    }
+
+    &.collapsed {
+        .icon {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.panel-handle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: solid 1px #ccc;
+    padding: 0 1.3rem;
+    color: inherit;
+    cursor: grab;
+
+    &:hover,
+    &:focus:hover {
+        color: inherit;
+    }
+
+    .icon {
+        top: 0;
+    }
+}
+
+.page-section__content {
+
+}
