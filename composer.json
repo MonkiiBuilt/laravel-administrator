@@ -1,15 +1,19 @@
 {
-  "name": "laravel-administrator",
-  "version": "0.0.5",
+  "name": "monkiibuilt/laravel-administrator",
+  "version": "0.1.0",
   "require": {
     "php": ">=5.5.9",
-    "laravel/framework": "5.4.*",
-    "laravelcollective/html": "5.2.*",
+    "laravel/framework": "^5.4",
+    "laravelcollective/html": "^5.2",
     "laravelcollective/bus": "^5.2"
   },
   "autoload": {
-    "psr-0" : {
-      "MonkiiBuilt\\LaravelAdministrator" : "src"
+    "psr-0": {
+      "MonkiiBuilt\\LaravelAdministrator": "src"
     }
-  }
+  },
+  "description": "Skeleton UI admin package",
+  "license": "proprietary",
+  "homepage": "http://monkii.com.au",
+  "prefer-stable": true
 }
