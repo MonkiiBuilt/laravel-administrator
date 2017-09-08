@@ -8,8 +8,8 @@
     "laravelcollective/bus": "^5.2"
   },
   "autoload": {
-    "psr-0": {
-      "MonkiiBuilt\\LaravelAdministrator": "src"
+    "psr-4": {
+      "MonkiiBuilt\\LaravelAdministrator\\": "src"
     }
   },
   "description": "Skeleton UI admin package",
