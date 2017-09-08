@@ -1,6 +1,5 @@
 {
     "name": "monkiibuilt/laravel-administrator",
-    "version": "0.1.1",
     "require": {
         "php": ">=7.0.0",
         "laravel/framework": "5.5.*",
