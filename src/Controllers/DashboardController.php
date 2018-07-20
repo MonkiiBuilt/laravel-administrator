@@ -18,7 +18,9 @@ class DashboardController {
 
     public function index(Route $route)
     {
-        return view('vendor.laravel-administrator.index');
+        $config = config('laravel-administrator');
+
+        return view('vendor.laravel-administrator.index', ['title' => $config['dashboard_title'], 'welcome' => $config['dashboard_welcome']]);
     }
 
     public function debug(Route $route)
