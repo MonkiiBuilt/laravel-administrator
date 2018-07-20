@@ -7,6 +7,17 @@
  */
 
 $config = [
+
+    /**
+     * Custom title for your dashboard
+     */
+    'dashboard_title' => 'Dashboard',
+
+    /**
+     * Some friendly welcome text for your dashboard.
+     */
+    'dashboard_welcome' => 'Welcome to your dashboard',
+
     /**
      * Each menu contains an key => array of menu items with the key being the route name for that item.
      * At the bare minimum we need a label element for each item, optionally the classes element can be

@@ -10,9 +10,10 @@
 
 @extends('vendor.laravel-administrator.layout')
 
-@section('title', 'Dashboard')
+@section('title', $title)
 
 @section('content')
 
-    <h1>Hi there</h1>
+    <h1>{{ $title }}</h1>
+    <p>{{ $welcome }}</p>
 @endsection
